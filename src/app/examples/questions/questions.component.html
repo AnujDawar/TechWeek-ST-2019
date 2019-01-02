@@ -1,0 +1,122 @@
+<div class="wrapper" *ngIf="auth.isLoggedIn() && globalservice.isAUser() && isDataLoaded">
+	<div class="page-header clear-filter" filter-color="orange" >
+		<div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
+		<div class="container">
+			<div class="col-md-4 content-center">
+				<div class="card  card-plain">
+					<div class="card-body">
+						<form (ngSubmit)="createQuestion(regform)" #regform="ngForm">
+
+							<br><br><br><br><br><br><br><br>
+
+							<h4 class="h3-seo">Welcome to Tech Quiz 2019.</h4>
+
+							<div class="input-group form-group-no-border" [ngClass]="{ 'input-group-focus': focus === true }">
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										<i class="now-ui-icons text_caps-small"></i></span>
+								</div>
+								<input type="text" name="question" placeholder="Enter Question.." class="form-control" ngModel id="question"
+								 (focus)="focus = true" (blur)="focus = false" ng-required="true" style="color: white; font-weight: 900" />
+							</div>
+
+							<div class="input-group form-group-no-border" [ngClass]="{ 'input-group-focus': focus === true }">
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										<i class="now-ui-icons text_caps-small"></i></span>
+								</div>
+								<input type="text" name="choice_1" placeholder="Enter Choice 1.." class="form-control" ngModel id="choice_1"
+								 (focus)="focus = true" (blur)="focus = false" ng-required="true" style="color: white; font-weight: 700" />
+							</div>
+
+							<div class="input-group form-group-no-border" [ngClass]="{ 'input-group-focus': focus === true }">
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										<i class="now-ui-icons text_caps-small"></i></span>
+								</div>
+								<input type="text" name="choice_2" placeholder="Enter Choice 2.." class="form-control" ngModel id="choice_2"
+								 (focus)="focus = true" (blur)="focus = false" ng-required="true" style="color: white; font-weight: 700" />
+							</div>
+
+							<div class="input-group form-group-no-border" [ngClass]="{ 'input-group-focus': focus === true }">
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										<i class="now-ui-icons text_caps-small"></i></span>
+								</div>
+								<input type="text" name="choice_3" placeholder="Enter Choice 3.." class="form-control" ngModel id="choice_3"
+								 (focus)="focus = true" (blur)="focus = false" ng-required="true" style="color: white; font-weight: 700" />
+							</div>
+
+							<div class="input-group form-group-no-border" [ngClass]="{ 'input-group-focus': focus === true }">
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										<i class="now-ui-icons text_caps-small"></i></span>
+								</div>
+								<input type="text" name="choice_4" placeholder="Enter Choice 4.." class="form-control" ngModel id="choice_4"
+								 (focus)="focus = true" (blur)="focus = false" ng-required="true" style="color: white; font-weight: 700" />
+							</div>
+							<br />
+
+							<div class="col-lg-12 col-sm-8 col-xm-4 col-sm-offset-0 text">
+								<label style="font-size: 125%">
+									Select The Correct Choice:
+								</label>
+								<br /><br />
+								<div style="text-align: center">
+									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%">
+										<input style="transform: scale(1.5);" type="radio" ngModel name="correct_choice" value="choice_1" id="radioOption1" />
+										Option 1
+									</label>
+									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%">
+										<input style="transform: scale(1.5);" type="radio" ngModel name="correct_choice" value="choice_2" id="radioOption2" />
+										Option 2
+									</label>
+									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%">
+										<input style="transform: scale(1.5);" type="radio" ngModel name="correct_choice" value="choice_3" id="radioOption3" />
+										Option 3
+									</label>
+									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%">
+										<input style="transform: scale(1.5);" type="radio" ngModel name="correct_choice" value="choice_4" id="radioOption4" />
+										Option 4
+									</label>
+								</div>
+
+								<br /><br />
+							</div>
+							<button style="font-size: 150%; width: 100%; padding-top: 1%; padding-bottom: 1%;" type="submit" [ngClass]="{
+                  'btn-success': submitQuestionText == 'ADD QUESTION',
+                  'btn-primary': submitQuestionText == 'SAVE CHANGES'
+                }">
+								{{ submitQuestionText }}
+							</button>
+						</form>
+
+						<button *ngIf="submitQuestionText == 'SAVE CHANGES'" style="font-size: 150%; width: 100%; padding-top: 1%; padding-bottom: 1%; margin-top: 1%"
+						 (click)="deleteQuestion()" class="btn-danger">
+							DELETE QUESTION
+						</button>
+
+						<br /><br />
+
+						<div class="form-bottom">
+							<h3 style="text-align: center; font-style: oblique">
+								Question List
+							</h3>
+							<br />
+							<div class="row">
+								<div class="col-md-12">
+									<ul class="list-group">
+										<a class="list-group-item" *ngFor="let question of questionList" style="margin-left:1%; margin-right:1%;  font-size: 125%; cursor: pointer; color: black;"
+										 (click)="onEditQuestion(question)">
+											{{ question.question }}
+										</a>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

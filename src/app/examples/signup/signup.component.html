@@ -1,0 +1,94 @@
+<div class="wrapper">
+        <div class="page-header clear-filter" filter-color="orange">
+          <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
+  <div class="container">
+      <div class="col-md-4 content-center">
+          <div class="card card-login card-plain">
+                <div class="header header-primary text-center">
+                         <div class="logo-container">
+                                <img class="n-logo" src="assets/img/newlogo.png" alt="">
+                           </div>  
+                           <div class="header text-center">
+                               <h6 class="title title-up">Sign Up</h6>
+                               </div> 
+                       </div>
+           
+                  
+              <div class="card-body">
+            <form  (ngSubmit)="register(regform)" #regform="ngForm">
+                <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                  </div>
+                    <input type="text" name="name" ngModel class="form-control" placeholder="Full Name..." (focus)="focus=true" (blur)="focus=false" >
+                </div>
+
+                <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus2===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons tech_mobile"></i>+91</span>
+                        </div>
+                          <input type="text" name="mobile" ngModel placeholder="Phone..." class="form-control" (focus)="focus2=true" (blur)="focus2=false"/>
+                </div>
+
+                <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus2===true}">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="now-ui-icons ui-1_email-85"></i></span>
+                  </div>
+                    <input type="text" name="email" ngModel placeholder="Email..." class="form-control" (focus)="focus2=true" (blur)="focus2=false"/>
+                  </div>
+                  <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus2===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
+                        </div>
+                          <input type="password" ngModel name="password" placeholder="Password..."  class="form-control" (focus)="focus2=true" (blur)="focus2=false"/>
+                  </div>
+                  <!-- If you want to add a checkbox to this form, uncomment this code -->
+                  <!-- <div class="checkbox">
+                       <input id="checkboxSignup" type="checkbox">
+                      <label for="checkboxSignup">
+                        Unchecked
+                       </label>
+                 </div> -->
+                 <div class="input-group form-group-no-border">
+                        <input type="submit" class="btn btn-primary btn-round btn-lg btn-block"  value="Get Started!" />
+                  </div>
+                  <div *ngIf="error">
+                     {{error}}
+                  </div>
+                </form>
+                <form (ngSubmit)="validateAuthCode(codeform)" #codeform="ngForm">
+                        <div *ngIf="confirmCode" >
+                                <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus2===true}">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="now-ui-icons ui-1_email-85"></i></span>
+                                        </div>
+                                          <input type="text" name="code" ngModel placeholder="Code..." class="form-control" (focus)="focus2=true" (blur)="focus2=false"/>
+                                        </div>
+                        <button type="submit"  class="btn btn-primary btn-round btn-lg btn-block">Validate Code</button>
+                        <div *ngIf="codeWasConfirmed" class="row message-row">
+                                Verification Code was confirmed, please login.
+                                     </div>
+                        <div class="text"> Not recieved code? <a href="resendCode()" class="text" >Resend Code</a></div>
+                        </div>
+        
+                     </form>
+        
+              </div>
+       
+       
+       
+          </div>
+      </div>
+  </div>
+</div>
+<footer class="footer" data-background-color="orange">
+        <div class="container">
+            <div class="copyright">
+                &copy;
+              {{data | date: 'yyyy'}} TechConnect, Designed and developed by TechConnect Team.
+              
+            </div>
+        </div>
+    </footer>
+
+</div>

@@ -1,0 +1,108 @@
+<div class="wrapper">
+  <div class="page-header clear-filter" filter-color="orange">
+    <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
+<div class="container">
+<div class="col-md-4 content-center" *ngIf="auth.isLoggedIn() && (globalservice.isAUser() || globalservice.isSUser())  && isDataLoaded" >
+    <div class="card card-login card-plain">
+          <div class="header header-primary text-center">
+                
+                     <div class="header text-center">
+                         <h6 class="title title-up">Manage Team</h6>
+                         </div> 
+                 </div>
+     
+             
+   <div class="card-body">
+      <form  (ngSubmit)="createTeam(regform)" #regform="ngForm">
+          <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+            <div class="input-group-prepend">
+                <span class="input-group-text">  <i class="now-ui-icons text_caps-small"></i></span>
+            </div>
+              <input type="text" name="team_name" ngModel class="form-control" placeholder="Team Name..." (focus)="focus=true" (blur)="focus=false" >
+          </div>
+          <!-- <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus2===true}">
+            <div class="checkbox">
+                <input id="is_active" name="is_active" type="checkbox">
+                  <label for="is_active">
+                   Is Active?
+                </label>
+          </div>
+            </div> -->
+        <input type="hidden" name="is_active" value="1"/>
+           <div class="input-group form-group-no-border">
+                  <input type="submit" class="btn btn-primary btn-round btn-lg"  value="Create Team!" />
+                  &nbsp;&nbsp;
+                  <input type="button" class="btn btn-primary btn-round btn-lg"  value="Back!" (click)=" back()" />
+            </div>
+            <div *ngIf="error">
+               {{error}}
+            </div>
+          </form>
+
+           <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">Team Id</th>
+                        <th>Team Name</th>
+                    
+                        <th class="text-right">Score</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of collection | paginate: { itemsPerPage: 3, currentPage: p }; let i = index">
+                    <th class="text-center">{{item.team_id}}</th>
+                     <th>{{item.team_name}}</th>
+                     <th>{{item.score}}</th>
+                        <td class="td-actions">
+                            <button type="button"  (click)="removeTeam(item.team_id)" rel="tooltip" class="btn btn-sm btn-round btn-danger">
+                                <i class="now-ui-icons ui-1_simple-remove"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </table>
+           
+             
+
+             <!-- <table class="table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th (click)="sort('name')">Name
+                          <span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th (click)="sort('genre')">Genre
+                          <span class="glyphicon sort-icon" *ngIf="key =='genre'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let game of collection | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+                        <td>{{i}}</td>
+                        <td>{{game.team_name}}</td>
+                        <td>{{game.team_name}}</td>
+                      </tr>
+                    </tbody>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </table> -->
+
+ 
+ 
+ 
+    </div>
+</div>
+</div>
+</div>
+<footer class="footer" data-background-color="orange">
+  <div class="container">
+      <div class="copyright">
+          &copy;
+        {{data | date: 'yyyy'}} TechConnect, Designed and developed by TechConnect Team.
+        
+      </div>
+  </div>
+</footer>
+
+</div>

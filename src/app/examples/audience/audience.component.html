@@ -1,0 +1,80 @@
+<div class="wrapper" *ngIf="auth.isLoggedIn() && isDataLoaded" >
+    <div class="page-header clear-filter" filter-color="orange">
+            <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
+          <div class="container">
+               
+                <div *ngIf="_data.length > 0" class="col-md-4 content-center">
+                        <div class="card  card-plain">    
+                            <div class="card-body">
+                            <form  (ngSubmit)="submit(regform)" #regform="ngForm">
+                                
+                            <h4 class="h3-seo">Welcome to  Tech Quiz 2019.</h4>
+                            <h3>Question: {{_data[0].question}} </h3>
+                            
+                               
+                            
+                              <div class="form-check form-check-radio input-group form-group-no-border">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[0].choice_id" (click)="setChoiceDescr(_data[0].choice)" checked>
+                                        <span class="form-check-sign"></span>
+                                       {{_data[0].choice}} 
+                                    </label>
+                                </div>
+              
+                                <div class="form-check form-check-radio input-group form-group-no-border">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[1].choice_id" (click)="setChoiceDescr(_data[1].choice)" checked>
+                                            <span class="form-check-sign"></span>
+                                            {{_data[1].choice}} 
+                                        </label>
+                                    </div>
+              
+                                    <div class="form-check form-check-radio input-group form-group-no-border">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[2].choice_id" (click)="setChoiceDescr(_data[2].choice)" checked>
+                                                <span class="form-check-sign"></span>
+                                                {{_data[2].choice}} 
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-radio input-group form-group-no-border">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[3].choice_id" (click)="setChoiceDescr(_data[3].choice)" checked>
+                                                    <span class="form-check-sign"></span>
+                                                    {{_data[3].choice}} 
+                                                </label>
+                                        </div>
+                             
+                               <div class="input-group form-group-no-border">
+                                      <input type="submit" class="btn btn-primary btn-round btn-lg "  value="Submit Answer!" />
+                                     &nbsp;&nbsp;
+                                      <button  class="btn btn-primary btn-round btn-lg " (click)="back()">Back</button>
+
+                                </div>
+
+                                <div *ngIf="error">
+                                   {{error}}
+                                </div>
+                              </form> 
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="_data.length <= 0" class="col-md-4 content-center">
+                        <h1 class="h2-seo">
+                            Welcome to STMicroelectronics Tech Week 2019.</h1>
+                        <h3 *ngIf="auth.isLoggedIn()">Please wait,Tech Quiz to start!....You will se magic soon...!!!</h3>
+
+                      </div>
+       
+              
+              </div>
+    </div>
+<footer class="footer" data-background-color="orange">
+    <div class="container">
+        <div class="copyright">
+            &copy;
+          {{data | date: 'yyyy'}} TechConnect, Designed and developed by TechConnect Team.
+          
+        </div>
+    </div>
+</footer>
+</div>

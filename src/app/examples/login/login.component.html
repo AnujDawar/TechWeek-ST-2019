@@ -1,0 +1,54 @@
+
+<div class="page-header" filter-color="orange">
+    <div class="page-header-image" style="background-image:url(assets/img/login.jpg)"></div>
+    <div class="container">
+        <div class="col-md-4 content-center">
+            <div class="card card-login card-plain">
+                <form class="form"  (ngSubmit)="onSubmit(f)" #f="ngForm">
+                    <div class="header header-primary text-center">
+                        <div class="logo-container">
+                            <img class="n-logo" src="assets/img/newlogo.png" alt="">
+                        </div>
+                        <div class="header text-center">
+                            <h4 class="title title-up">Log In</h4>
+                            </div>
+                    </div>
+                    <div class="content">
+                      <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="now-ui-icons ui-1_email-85"></i></span>
+                        </div>
+                          <input type="text" ngModel class="form-control" name="email" placeholder="Email..." (focus)="focus=true" (blur)="focus=false" >
+                      </div>
+                      <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus2===true}">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
+                            </div>
+                              <input type="password" ngModel name="password" placeholder="Password..."  class="form-control " (focus)="focus2=true" (blur)="focus2=false"/>
+                    </div>
+                    </div>
+                    <div class="footer text-center">
+                            <input type="submit" class="btn btn-primary btn-round btn-lg btn-block"  value="Get Started!" />
+                    </div>
+                    <div *ngIf="error">
+                        {{error}}
+                     </div>
+                    <div class="pull-right">
+                        <h6>
+                            <a href="#" class="link">Need Help?</a>
+                        </h6>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+            <div class="container">
+                <div class="copyright">
+                    &copy;
+                  {{data | date: 'yyyy'}} TechConnect, Designed and developed by TechConnect Team.
+                  
+                </div>
+            </div>
+        </footer>
+</div>

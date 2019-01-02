@@ -1,0 +1,68 @@
+<!-- <div class="wrapper">
+  <div class="page-header clear-filter" filter-color="orange">
+    <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');">
+
+    </div>
+      <div class="container">
+          <div class="content-center brand">
+              <img class="n-logo" src="assets/img/now-logo.png" alt="">
+              <h1 class="h1-seo">Welcome to STMicroelectronics Tech Week 2019.</h1>
+              <h3>Please register to participate in Tech Quiz.</h3>
+          </div>
+      </div>
+  </div>
+  <footer class="footer" data-background-color="orange">
+      <div class="container">
+          <nav>
+          </nav>
+          <div class="copyright">
+              &copy;
+            {{data | date: 'yyyy'}}, Designed and Developed by TechConnect Team.
+          </div>
+      </div>
+  </footer>
+</div> -->
+
+
+<div class="wrapper">
+    <div class="page-header clear-filter" filter-color="orange">
+      <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
+    <div class="container">
+        <div class="content-center brand ">
+         
+            <img class="n-logo" src="assets/img/newlogo.png" alt="">
+            <span>&nbsp;</span>
+            <h1 class="h2-seo">
+                Welcome to STMicroelectronics Tech Week 2019.</h1>
+            <h3 *ngIf="!auth.isLoggedIn()">Please register/login to participate in Tech Quiz.</h3>
+
+            <div *ngIf='auth.isLoggedIn() && globalservice.isAUser()'>  
+            <button class="btn btn-primary btn-lg"  (click)="startQuiz()">Start Quiz</button>   
+            <button class="btn btn-primary btn-lg " (click)="manageQuestions()" >Manage Question</button>
+            <button class="btn btn-primary btn-lg " (click)="manageTeam()">Manage Teams</button>
+            </div>
+
+            <div *ngIf='auth.isLoggedIn() && (globalservice.isSUser() || globalservice.isAUser())'>  
+                    <button class="btn btn-primary btn-lg"  (click)="manageScores()">Manage Scores</button>   
+                    <button class="btn btn-primary btn-lg " (click)="manageTeam()">Manage Teams</button>
+            </div>
+
+            <div *ngIf='auth.isLoggedIn() && !globalservice.isAUser() && !globalservice.isSUser()'>                     
+                    <button class="btn btn-primary btn-lg "(click)="goToQuiz()">Goto Quiz!</button>
+            </div>
+        </div>
+       
+    </div>
+</div>
+    <footer class="footer" data-background-color="orange">
+            <div class="container">
+                <div class="copyright">
+                    &copy;
+                  {{data | date: 'yyyy'}} TechConnect, Designed and developed by TechConnect Team.
+                  
+                </div>
+            </div>
+        </footer>
+    
+    </div>
+
