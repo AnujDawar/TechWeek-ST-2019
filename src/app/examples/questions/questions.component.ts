@@ -23,6 +23,7 @@ export class QuestionsComponent implements OnInit {
 	submitQuestionText: string = "ADD QUESTION";
 	currentQuestion: Question;
 	public questionInputBox: string;
+	questionListText: string = "Question List is Empty";
 
 	constructor(
 		public auth: AuthorizationService,
@@ -115,11 +116,14 @@ export class QuestionsComponent implements OnInit {
 
 				var data = response.json();
 
-				console.log(data);
+				if(data.length > 0)
+					this.questionListText = "Question List";
+				
+				else
+					this.questionListText = "Question List is Empty"
 
 				data.forEach(element => {
 					var question = new Question();
-
 					question.question_id = element.question_id;
 					question.question = element.question;
 					question.is_active = element.is_active;
@@ -135,6 +139,11 @@ export class QuestionsComponent implements OnInit {
 
 	deleteQuestion() {
 		console.log("QUESTIO ID FOR DELETION: " + this.currentQuestion.question_id);
+
+		var deleteQuestionPrompt = confirm("Delete this question?");
+
+		if(! deleteQuestionPrompt)
+			return;
 
 		this.http.delete(aws_url.DELETE_QUESTION_URL + "?question_id=" + this.currentQuestion.question_id).subscribe(
 			(response) => {
