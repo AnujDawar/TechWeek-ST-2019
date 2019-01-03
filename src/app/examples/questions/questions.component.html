@@ -1,15 +1,16 @@
 <div class="wrapper" *ngIf="auth.isLoggedIn() && globalservice.isAUser() && isDataLoaded">
-	<div class="page-header clear-filter" filter-color="orange" >
+	<div class="page-header clear-filter" filter-color="orange">
 		<div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
 		<div class="container">
 			<div class="col-md-4 content-center">
 				<div class="card  card-plain">
 					<div class="card-body">
 						<form (ngSubmit)="createQuestion(regform)" #regform="ngForm">
+							<h4 class="h3-seo" style="color: gold">
+								Manage Questions Module
+							</h4>
 
-							<br><br><br><br><br><br><br><br>
-
-							<h4 class="h3-seo">Welcome to Tech Quiz 2019.</h4>
+							<br /><br />
 
 							<div class="input-group form-group-no-border" [ngClass]="{ 'input-group-focus': focus === true }">
 								<div class="input-group-prepend">
@@ -58,12 +59,12 @@
 							<br />
 
 							<div class="col-lg-12 col-sm-8 col-xm-4 col-sm-offset-0 text">
-								<label style="font-size: 125%">
+								<label style="font-size: 150%; color: gold">
 									Select The Correct Choice:
 								</label>
 								<br /><br />
 								<div style="text-align: center">
-									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%">
+									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%;">
 										<input style="transform: scale(1.5);" type="radio" ngModel name="correct_choice" value="choice_1" id="radioOption1" />
 										Option 1
 									</label>
@@ -102,14 +103,14 @@
 							<h3 style="text-align: center; font-style: oblique">
 								Question List
 							</h3>
-							<br />
 							<div class="row">
 								<div class="col-md-12">
 									<ul class="list-group">
-										<a class="list-group-item" *ngFor="let question of questionList" style="margin-left:1%; margin-right:1%;  font-size: 125%; cursor: pointer; color: black;"
+										<button class="button" *ngFor="let question of questionList"
+										 style="vertical-align:middle"
 										 (click)="onEditQuestion(question)">
-											{{ question.question }}
-										</a>
+											<span>{{ question.question }}</span>
+										</button>
 									</ul>
 								</div>
 							</div>
