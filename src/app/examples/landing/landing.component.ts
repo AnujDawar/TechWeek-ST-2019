@@ -106,7 +106,8 @@ export class LandingComponent implements OnInit {
 
 					if (data == "QUIZ OVER") {
 						this._data = null;
-						this.isDataLoaded = false;
+						this._router.navigateByUrl('/quiz-over');
+						// this.isDataLoaded = false;
 					} else {
 						this._data = data;
 						this.isDataLoaded = true;

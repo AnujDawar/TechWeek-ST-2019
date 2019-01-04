@@ -14,12 +14,14 @@ import {GlobalService} from "./shared/global.service";
 import {RestApiservice} from "./shared/rest-api.service";
 import {HttpModule} from "@angular/http";
 import {HttpClientModule} from '@angular/common/http';
-import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import {NgxPaginationModule} from 'ngx-pagination';
+import { QuizOverComponent } from './quiz-over/quiz-over.component'; // <-- import the module
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent
+        NavbarComponent,
+        QuizOverComponent
     ],
     imports: [
         BrowserAnimationsModule,
