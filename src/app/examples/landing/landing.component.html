@@ -8,7 +8,7 @@
                     <div class="col-md-4 content-center">
                             <div class="card  card-plain">    
                                 <div class="card-body">
-                                <form  (ngSubmit)="register(regform)" #regform="ngForm">
+                                <form  #regform="ngForm">
                                     
                                 <h4 class="h3-seo">Welcome to  Tech Quiz 2019.</h4>
                                 <h3>Question: {{_data[0].question}} </h3>
@@ -47,7 +47,7 @@
                                    <div class="input-group form-group-no-border">
                                           <input type="submit" class="btn btn-primary btn-round btn-lg "  value="Submit Answer!" />
                                          &nbsp;&nbsp;
-                                          <button (click)="next(_data[0].question_id)" class="btn btn-primary btn-round btn-lg " >Next Question!</button>
+                                          <button (click)="next(_data[0])" class="btn btn-primary btn-round btn-lg " >Next Question!</button>
                                           &nbsp;&nbsp;
                                           <button  class="btn btn-primary btn-round btn-lg " (click)="back()">Back</button>
 

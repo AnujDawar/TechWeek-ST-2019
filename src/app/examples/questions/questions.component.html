@@ -81,13 +81,11 @@
 										Option 4
 									</label>
 								</div>
-
 								<br /><br />
 							</div>
-							<button style="font-size: 150%; width: 100%; padding-top: 1%; padding-bottom: 1%;" type="submit" [ngClass]="{
-                  'btn-success': submitQuestionText == 'ADD QUESTION',
-                  'btn-save-changes': submitQuestionText == 'SAVE CHANGES'
-                }">
+
+							<button style="font-size: 150%; width: 100%; padding-top: 1%; padding-bottom: 1%;" type="submit" [ngClass]="{ 'btn-success': submitQuestionText == 'ADD QUESTION', 
+										 'btn-save-changes': submitQuestionText == 'SAVE CHANGES'}">
 								{{ submitQuestionText }}
 							</button>
 						</form>

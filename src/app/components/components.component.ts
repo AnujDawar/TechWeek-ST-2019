@@ -9,6 +9,7 @@ import {RestApiservice} from "../shared/rest-api.service";
 import { GlobalService } from "../shared/global.service";
 
 import { aws_url } from '../shared/urls';
+import { Question } from 'app/shared/question.model';
 
 @Component({
     selector: 'app-components',
@@ -70,7 +71,13 @@ export class ComponentsComponent implements OnInit, OnDestroy {
     }
 
     startQuiz(){
-        this.restApi.put(aws_url.GET_NEXT_QUESTION_URL,0).subscribe(
+      
+        var question: Question;
+        question = new Question();
+        
+        question.question_id = 0;
+
+        this.restApi.put(aws_url.GET_NEXT_QUESTION_URL, question).subscribe(
           (data) => {  
             console.log(data);
             this._router.navigateByUrl('/landing');
