@@ -3,7 +3,7 @@
     <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
 <div class="container">
 <div class="col-md-4 content-center" *ngIf="auth.isLoggedIn() && (globalservice.isSUser() || globalservice.isAUser())" >
-    <div class="card card-login card-plain">
+    <div class="card card-plain">
           <!-- <div class="header header-primary text-center">
                 
                      <div class="header text-center">
@@ -12,7 +12,7 @@
                  </div> -->
      
             
-<div class="card-body">
+<div>
     <table class="table">
             <thead>
                 <tr>
@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of _data | paginate: { itemsPerPage: 4, currentPage: p }; let i = index">
+                <tr *ngFor="let item of _data | paginate: { itemsPerPage: 3, currentPage: p }; let i = index">
                
                  <td>{{item.team_name}}</td>
                

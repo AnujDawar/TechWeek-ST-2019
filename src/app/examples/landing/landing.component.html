@@ -8,7 +8,7 @@
                     <div class="col-md-4 content-center">
                             <div class="card  card-plain">    
                                 <div class="card-body">
-                                <form  #regform="ngForm">
+                                <!-- <form  (ngSubmit)="register(regform)" #regform="ngForm"> -->
                                     
                                 <h4 class="h3-seo">Welcome to  Tech Quiz 2019.</h4>
                                 <h3>Question: {{_data[0].question}} </h3>
@@ -56,7 +56,7 @@
                                     <div *ngIf="error">
                                        {{error}}
                                     </div>
-                                  </form> 
+                                  <!-- </form>  -->
                                 </div>
                             </div>
                         </div>

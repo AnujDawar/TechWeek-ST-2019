@@ -16,8 +16,8 @@ import { aws_url } from '../../shared/urls';
 export class ScoremanagementComponent implements OnInit {
 
   // GET_ALL_TEAMS="https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/teams";
-  constructor(private auth: AuthorizationService,private _router: Router,private restApi: RestApiservice, private globalservice:GlobalService) { }
-
+  constructor(public auth: AuthorizationService,public _router: Router,public restApi: RestApiservice, public globalservice:GlobalService) { }
+  data : Date = new Date();
   _data:any;
   isDataLoaded=false;
   error='';

@@ -40,10 +40,10 @@ export class LandingComponent implements OnInit {
 	//  nextquestionurl="https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/question/next";
 
 	constructor(
-		private auth: AuthorizationService,
-		private _router: Router,
-		private restApi: RestApiservice,
-		private globalservice: GlobalService
+		public auth: AuthorizationService,
+		public _router: Router,
+		public restApi: RestApiservice,
+		public globalservice: GlobalService
 	) { }
 
 	ngOnInit() {
@@ -102,7 +102,7 @@ export class LandingComponent implements OnInit {
 		console.log("submitted question id: " + question["question_id"]);
 
 		this.postsSubscription = this.restApi
-			.put(aws_url.GET_NEXT_QUESTION_URL, question)
+			.post(aws_url.GET_NEXT_QUESTION_URL, question)
 			.subscribe(
 				data => {
 					console.log("Anuj : " + data);

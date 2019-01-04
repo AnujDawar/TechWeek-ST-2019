@@ -45,10 +45,10 @@ export class ComponentsComponent implements OnInit, OnDestroy {
   constructor(
     private renderer: Renderer,
     config: NgbAccordionConfig,
-    private auth: AuthorizationService,
-    private _router: Router,
-    private restApi: RestApiservice,
-    private globalservice: GlobalService
+    public auth: AuthorizationService,
+    public _router: Router,
+    public restApi: RestApiservice,
+    public globalservice: GlobalService
   ) {
     config.closeOthers = true;
     config.type = "info";

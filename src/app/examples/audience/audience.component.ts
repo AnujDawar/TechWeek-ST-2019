@@ -39,7 +39,7 @@ export class AudienceComponent implements OnInit {
   isDataLoaded: boolean = false;
   //  url ='https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/question';
 
-  constructor(private auth: AuthorizationService, private _router: Router, private restApi: RestApiservice, private globalService: GlobalService) { }
+  constructor(public auth: AuthorizationService, public _router: Router, public restApi: RestApiservice, public globalService: GlobalService) { }
 
   submit(form: NgForm) {
     const choice_id = form.value.choice;
@@ -101,7 +101,7 @@ export class AudienceComponent implements OnInit {
   }
 
   subscribeToData() {
-    this.timerSubscription = Observable.timer(10000)
+    this.timerSubscription = Observable.timer(1000)
       .subscribe(() => this.refreshData());
 
   }

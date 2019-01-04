@@ -18,9 +18,12 @@ confirmCode: boolean = false;
 codeWasConfirmed: boolean = false;
 error: string = "";
 emailVerificationMessage: boolean = false;
+data : Date = new Date();
+focus;
+focus1;
+focus2;
 
-
-  constructor(private auth: AuthorizationService,private _router: Router,private globalService:GlobalService) { }
+  constructor(public auth: AuthorizationService,public _router: Router,public globalService:GlobalService) { }
 
   ngOnInit() {
 
