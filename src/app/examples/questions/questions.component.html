@@ -1,10 +1,11 @@
-<div class="wrapper" *ngIf="auth.isLoggedIn() && globalservice.isAUser() && isDataLoaded">
+<div *ngIf="auth.isLoggedIn() && globalservice.isAUser() && isDataLoaded">
 	<div class="page-header clear-filter" filter-color="orange">
 		<div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
 		<div class="container">
 			<div class="col-md-4 content-center">
 				<div class="card  card-plain">
 					<div class="card-body">
+
 						<form (ngSubmit)="createQuestion(regform)" #regform="ngForm">
 							<h4 class="h3-seo" style="color: gold">
 								Manage Questions Module
@@ -84,13 +85,13 @@
 								<br /><br />
 							</div>
 
-							<button style="font-size: 150%; width: 100%; padding-top: 1%; padding-bottom: 1%;" type="submit" [ngClass]="{ 'btn-success': submitQuestionText == 'ADD QUESTION', 
+							<button style="width: 100%; padding-top: 1%; padding-bottom: 1%;" type="submit" [ngClass]="{ 'btn-success': submitQuestionText == 'ADD QUESTION', 
 										 'btn-save-changes': submitQuestionText == 'SAVE CHANGES'}">
 								{{ submitQuestionText }}
 							</button>
 						</form>
 
-						<button *ngIf="submitQuestionText == 'SAVE CHANGES'" style="font-size: 150%; width: 100%; padding-top: 1%; padding-bottom: 1%; margin-top: 1%"
+						<button *ngIf="submitQuestionText == 'SAVE CHANGES'" style="width: 100%; padding-top: 1%; padding-bottom: 1%; margin-top: 1%"
 						 (click)="deleteQuestion()" class="btn-danger">
 							DELETE QUESTION
 						</button>
