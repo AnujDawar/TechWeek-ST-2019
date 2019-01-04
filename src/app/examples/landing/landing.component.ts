@@ -71,6 +71,9 @@ export class LandingComponent implements OnInit {
 	}
 
 	refreshData(): any {
+
+		console.log("REFRESHING DATA");
+
 		this.postsSubscription = this.restApi
 			.get(aws_url.GET_CURRENT_QUESTION_URL)
 			.subscribe(
@@ -105,9 +108,9 @@ export class LandingComponent implements OnInit {
 					console.log("Anuj : " + data);
 
 					if (data == "QUIZ OVER") {
-						this._data = null;
-						this._router.navigateByUrl('/quiz-over');
+						// this._data = null;
 						// this.isDataLoaded = false;
+						this._router.navigateByUrl('/quiz-over');
 					} else {
 						this._data = data;
 						this.isDataLoaded = true;

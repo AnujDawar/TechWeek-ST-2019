@@ -17,7 +17,12 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
     email: any;
-    constructor(public location: Location, private element: ElementRef, private auth: AuthorizationService, private _router: Router, private globalService: GlobalService, private restApi: RestApiservice) {
+    constructor(public location: Location, 
+        private element: ElementRef, 
+        private auth: AuthorizationService, 
+        private _router: Router, 
+        private globalService: GlobalService, 
+        private restApi: RestApiservice) {
         this.sidebarVisible = false;
     }
 
@@ -27,14 +32,10 @@ export class NavbarComponent implements OnInit {
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
     }
 
-
-
     doLogout() {
         this.auth.logOut();
         //this._router.navigateByUrl('/login');
     }
-
-
 
     sidebarOpen() {
         const toggleButton = this.toggleButton;
@@ -74,16 +75,20 @@ export class NavbarComponent implements OnInit {
     }
 
     startQuiz() {
+        
+        console.log("STARTING QUIZ BY NAVBAR");
+
         var question: Question;
         question = new Question();
         question.question_id = 0;
 
         this.restApi.put(aws_url.GET_NEXT_QUESTION_URL, question).subscribe(
-            (data) => {
+            data => {
+                console.log("RESPONSE FROM STARTING QUIZ BY NAV BAR: ");
                 console.log(data);
                 this._router.navigateByUrl('/landing');
             },
-            function (error) {
+            error => {
                 console.log(error);
             }
         );
