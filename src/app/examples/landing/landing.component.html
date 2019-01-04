@@ -15,7 +15,7 @@
                         
                                   <div class="form-check form-check-radio input-group form-group-no-border">
                                         <label class="form-check-label">
-                                            <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[0].choice" checked>
+                                            <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice_1" [value]="_data[0].choice">
                                             <span class="form-check-sign"></span>
                                            {{_data[0].choice}} 
                                         </label>
@@ -23,7 +23,7 @@
                   
                                     <div class="form-check form-check-radio input-group form-group-no-border">
                                             <label class="form-check-label">
-                                                <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[1].choice" checked>
+                                                <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice_2" [value]="_data[1].choice">
                                                 <span class="form-check-sign"></span>
                                                 {{_data[1].choice}} 
                                             </label>
@@ -31,14 +31,14 @@
                   
                                         <div class="form-check form-check-radio input-group form-group-no-border">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[2].choice" checked>
+                                                    <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice_3" [value]="_data[2].choice">
                                                     <span class="form-check-sign"></span>
                                                     {{_data[2].choice}} 
                                                 </label>
                                             </div>
                                             <div class="form-check form-check-radio input-group form-group-no-border">
                                                     <label class="form-check-label">
-                                                        <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[3].choice" checked>
+                                                        <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice_4" [value]="_data[3].choice">
                                                         <span class="form-check-sign"></span>
                                                         {{_data[3].choice}} 
                                                     </label>
@@ -47,7 +47,7 @@
                                    <div class="input-group form-group-no-border">
                                           <input type="submit" class="btn btn-primary btn-round btn-lg "  value="Submit Answer!" />
                                          &nbsp;&nbsp;
-                                          <button (click)="next(_data[0].question_id)" class="btn btn-primary btn-round btn-lg " >Next Question!</button>
+                                          <button (click)="next(_data[0])" class="btn btn-primary btn-round btn-lg " >Next Question!</button>
                                           &nbsp;&nbsp;
                                           <button  class="btn btn-primary btn-round btn-lg " (click)="back()">Back</button>
 

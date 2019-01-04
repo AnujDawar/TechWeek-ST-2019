@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ComponentsComponent } from './components/components.component';
@@ -13,22 +13,23 @@ import { AudienceComponent } from './examples/audience/audience.component';
 import { QuestionsComponent } from './examples/questions/questions.component';
 import { TeamComponent } from './examples/team/team.component';
 import { ScoremanagementComponent } from './examples/scoremanagement/scoremanagement.component';
+import { QuizOverComponent } from './quiz-over/quiz-over.component';
 
 
 
 
-const routes: Routes =[
+const routes: Routes = [
     { path: '', redirectTo: 'index', pathMatch: 'full' },
-    { path: 'index',                component: ComponentsComponent },
-    { path: 'nucleoicons',          component: NucleoiconsComponent },
-    { path: 'landing',     component: LandingComponent },
-    { path: 'login',       component: LoginComponent },
-    { path: 'register',       component: SignupComponent },
-    { path: 'audience',     component:AudienceComponent },
-    { path: 'questions',     component:QuestionsComponent },
-    { path: 'team',     component:TeamComponent },
-    { path: 'score',    component: ScoremanagementComponent}
-    
+    { path: 'index', component: ComponentsComponent },
+    { path: 'nucleoicons', component: NucleoiconsComponent },
+    { path: 'landing', component: LandingComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: SignupComponent },
+    { path: 'audience', component: AudienceComponent },
+    { path: 'questions', component: QuestionsComponent },
+    { path: 'team', component: TeamComponent },
+    { path: 'score', component: ScoremanagementComponent },
+    { path: 'quiz-over', component: QuizOverComponent }
 ];
 
 @NgModule({
