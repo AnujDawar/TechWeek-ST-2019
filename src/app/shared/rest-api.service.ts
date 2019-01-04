@@ -189,50 +189,13 @@ export class RestApiservice {
 
 
 
-<<<<<<< HEAD
   private handleError(error:any) {
 
     return Observable.throw(error.text() ? error.json().errorMessage : {});
 }
 private extractData(res: Response) {
     console.log("res.text()-->"+res.text());
-=======
-  private handleError(error: any) {
-    /* In a real world app, we might use a remote logging infrastructure
-     We'd also dig deeper into the error to get a better message*/
-    /* error = error.json();
-     console.log(error);
-    let errMsg = (error.errorMessage) ? error.errorMessage :
-        error.errorCode ? `${error.status} - ${error.statusText}` : 'Server error';
-    return Observable.throw(errMsg);*/
-    //  return Observable.throw('Server error, Please try again.');
-
-    return Observable.throw(error.text() ? error.json().errorMessage : {});
-  }
-  private extractData(res: Response) {
-    console.log("res.json()-->" + res.json());
-    console.log("res.text()-->" + res.text());
->>>>>>> 132394b1927ce41835a5cdb4a831edddb87af759
     return res.text() ? res.json() : {};
   }
 
-<<<<<<< HEAD
-=======
-
-  //   getUserById(id: number) {
-  //     return this.http.get<any>(this.baseUrl + '/' + id);
-  //   }
-
-  //   createUser(user: User) {
-  //     return this.http.post(this.baseUrl, user);
-  //   }
-
-  //   updateUser(user: User) {
-  //     return this.http.put(this.baseUrl + '/' + user.id, user);
-  //   }
-
-  //   deleteUser(id: number) {
-  //     return this.http.delete(this.baseUrl + '/' + id);
-  //   }
->>>>>>> 132394b1927ce41835a5cdb4a831edddb87af759
 }
