@@ -40,7 +40,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
 
     state_icon_primary = true;
 
-    constructor( private renderer : Renderer, config: NgbAccordionConfig,private auth: AuthorizationService,private _router: Router,private restApi: RestApiservice,private globalservice :GlobalService) {
+    constructor( private renderer : Renderer, config: NgbAccordionConfig,public auth: AuthorizationService,public _router: Router,public restApi: RestApiservice,public globalservice :GlobalService) {
         config.closeOthers = true;
         config.type = 'info';
     }
@@ -70,7 +70,10 @@ export class ComponentsComponent implements OnInit, OnDestroy {
     }
 
     startQuiz(){
-        this.restApi.put(aws_url.GET_NEXT_QUESTION_URL,0).subscribe(
+     const json= {
+         "question_id" :0
+       };
+        this.restApi.post(aws_url.GET_NEXT_QUESTION_URL,json).subscribe(
           (data) => {  
             console.log(data);
             this._router.navigateByUrl('/landing');

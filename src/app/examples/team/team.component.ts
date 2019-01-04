@@ -17,8 +17,8 @@ export class TeamComponent implements OnInit {
   //  GET_ALL_TEAMS="https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/teams";
   //  CREATE_TEAM="https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/teams";
   //  DELETE_TEAM="https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/teams";
-
-   constructor(private auth: AuthorizationService,private _router: Router,private restApi: RestApiservice, private globalservice:GlobalService) { }
+  data : Date = new Date();
+   constructor(public auth: AuthorizationService,public _router: Router,public restApi: RestApiservice, public globalservice:GlobalService) { }
     
    error ='';
 

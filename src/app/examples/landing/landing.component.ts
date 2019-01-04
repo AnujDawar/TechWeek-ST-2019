@@ -43,7 +43,7 @@ export class LandingComponent implements OnInit {
   //  url ='https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/question';
   //  nextquestionurl="https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/question/next";
 
-  constructor(private auth: AuthorizationService,private _router: Router,private restApi: RestApiservice, private globalservice:GlobalService) { }
+  constructor(public auth: AuthorizationService,public _router: Router,public restApi: RestApiservice, public globalservice:GlobalService) { }
 
 
   ngOnInit() {
@@ -100,10 +100,15 @@ export class LandingComponent implements OnInit {
 
   next(questionId)
   {
-    this.postsSubscription = this.restApi.put(aws_url.GET_NEXT_QUESTION_URL,questionId).subscribe(
+     const json= {
+      "question_id" :questionId
+    };
+
+    console.log("json--->"+json);
+    this.postsSubscription = this.restApi.post(aws_url.GET_NEXT_QUESTION_URL,json).subscribe(
       (data) => {
         this._data = data;
-        this.isDataLoaded=true;
+      //  this.isDataLoaded=true;
       },
       function (error) {
         console.log(error);
@@ -165,7 +170,7 @@ export class LandingComponent implements OnInit {
     navbar.classList.remove('navbar-transparent');
 
     //  this.timerSubscription.unsubscribe();
-    //  this.postsSubscription.unsubscribe();
+      this.postsSubscription.unsubscribe();
   }
 
 }

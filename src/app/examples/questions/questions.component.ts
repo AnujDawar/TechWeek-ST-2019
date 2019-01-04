@@ -26,9 +26,9 @@ export class QuestionsComponent implements OnInit {
 
 	constructor(
 		public auth: AuthorizationService,
-		private _router: Router,
-		private http: Http,
-		private globalservice: GlobalService
+		public _router: Router,
+		public http: Http,
+		public globalservice: GlobalService
 	) { }
 
 	ngOnInit() {

@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
     email:any;
-    constructor(public location: Location, private element : ElementRef,private auth: AuthorizationService,private _router: Router,private globalService: GlobalService,private restApi : RestApiservice) {
+    constructor(public location: Location, private element : ElementRef,public auth: AuthorizationService,public _router: Router,public globalService: GlobalService,public restApi : RestApiservice) {
         this.sidebarVisible = false;
     }
 

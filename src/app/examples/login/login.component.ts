@@ -15,10 +15,12 @@ export class LoginComponent implements OnInit {
     data : Date = new Date();
     focus;
     focus1;
+    focus2;
     error="";
+
     emailVerificationMessage=false;
 
-    constructor(private auth: AuthorizationService,private _router: Router,private globalService:GlobalService) { }
+    constructor(public auth: AuthorizationService,public _router: Router,public globalService:GlobalService) { }
 
 
     ngOnInit() {

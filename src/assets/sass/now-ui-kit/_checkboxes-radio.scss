@@ -46,7 +46,8 @@
   text-align: center;
   font-size: 14px;
   opacity: 0;
-  color: $dark-background;
+  //color: $dark-background;    
+  color: $white-color;
   border: 0;
   background-color: inherit;
 }
@@ -104,8 +105,11 @@
 .form-check-radio input[type="radio"]:checked + .form-check-sign::after {
     width: 4px;
     height: 4px;
-    background-color: $dark-background;
-    border-color: $dark-background;
+    // background-color: $dark-background;
+    // border-color: $dark-background;
+     background-color:     $white-color;
+     border-color:     $white-color;
+
     top: 11px;
     left: 11px;
     opacity: 1;
@@ -121,5 +125,6 @@
 
 .form-check-radio input[type="radio"]:disabled + .form-check-sign::before,
 .form-check-radio input[type="radio"]:disabled + .form-check-sign::after {
-  color: $dark-gray;
+color: $dark-gray;
+
 }
