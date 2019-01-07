@@ -11,6 +11,7 @@ export class Question {
   team: string;
   asset_name: string;
   asset_path: string;
+  media_type: string;
   
   constructor() {}
 }

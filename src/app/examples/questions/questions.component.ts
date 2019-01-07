@@ -35,6 +35,7 @@ export class QuestionsComponent implements OnInit {
 	questionListText: string = "Question List is Empty";
 	asset_path: string;
 	asset_name: string;
+	mediaType: string;
 
 	constructor(
 		public auth: AuthorizationService,
@@ -60,7 +61,7 @@ export class QuestionsComponent implements OnInit {
 
 		var question = questionForm.value;
 		var correct_choice = question[question["correct_choice"]];
-		
+
 		question["is_active"] = 0;
 		question["correct_choice"] = correct_choice;
 
@@ -100,7 +101,9 @@ export class QuestionsComponent implements OnInit {
 		this.questionForm.controls["asset_name"].setValue(question.asset_name);
 		this.questionForm.controls["round"].setValue(question.round);
 		this.questionForm.controls["team"].setValue(question.team);
-
+		this.questionForm.controls["media_type"].setValue(question.media_type);
+		
+		this.mediaType = question.media_type;
 		this.asset_name = question.asset_name;
 		this.asset_path = question.asset_path;
 
@@ -124,6 +127,7 @@ export class QuestionsComponent implements OnInit {
 
 		this.currentQuestion.question_id = question.question_id;
 		this.currentQuestion.asset_name = question.asset_name;
+		this.currentQuestion.media_type = question.media_type;
 	}
 
 	refreshQuestionList() {
@@ -179,6 +183,7 @@ export class QuestionsComponent implements OnInit {
 	resetForm() {
 		this.asset_name = "";
 		this.asset_path = "";
+		this.mediaType = "";
 		this.questionForm.reset();
 		this.submitQuestionText = "ADD QUESTION";
 		this.questionList = [];
