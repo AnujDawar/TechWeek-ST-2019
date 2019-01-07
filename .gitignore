@@ -1,4 +1,4 @@
 /node_modules
 src/app/shared/credentials.ts
+src/app/shared/urls.ts
 dist/*
-

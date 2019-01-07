@@ -7,6 +7,8 @@ export class Question {
   choice_4: string;
   is_active: number;
   correct_choice: string;
-
+  round:  string;
+  team: string;
+  
   constructor() {}
 }

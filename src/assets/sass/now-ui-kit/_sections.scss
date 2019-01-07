@@ -20,7 +20,7 @@
 
 .page-header{
     height: 100vh;
-    max-height: 1050px;
+    // max-height: 1050px;
     padding: 0;
     color: $white-color;
     position: relative;
@@ -61,7 +61,7 @@
             padding: 0 15px;
             color: #FFFFFF;
             width: 100%;
-            max-width: 880px;
+            max-width: 100%;
         }
     }
     .category,
