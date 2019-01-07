@@ -1,7 +1,6 @@
 //  This file stores all the URLs of AWS
 
 export const aws_url = {
-
     //  Anuj Dawar
 
     // CREATE_QUESTION_URL:        "https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/question/create",
