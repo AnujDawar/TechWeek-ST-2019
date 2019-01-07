@@ -31,7 +31,6 @@ export class ComponentsComponent implements OnInit, OnDestroy {
   focus;
   focus1;
   focus2;
-  // nextquestionurl="https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/question/next";
 
   date: { year: number; month: number };
   model: NgbDateStruct;

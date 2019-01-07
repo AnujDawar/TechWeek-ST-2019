@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	ViewChild,
+	ElementRef,
+	Renderer
+} from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { AuthorizationService } from "../../shared/authorization.service";
 import { Router } from "@angular/router";
@@ -6,18 +12,17 @@ import { Http } from "@angular/http";
 import { Question } from "../../shared/question.model";
 import { httpFactory } from "@angular/http/src/http_module";
 import { GlobalService } from "../../shared/global.service";
-import { aws_url } from '../../shared/urls';
+import { aws_url } from "../../shared/urls";
 
-import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
-import * as Rellax from 'rellax';
+import { NgbAccordionConfig } from "@ng-bootstrap/ng-bootstrap";
+import * as Rellax from "rellax";
 
 @Component({
-	selector: 'app-questions',
-	templateUrl: './questions.component.html',
-	styleUrls: ['./questions.component.scss']
+	selector: "app-questions",
+	templateUrl: "./questions.component.html",
+	styleUrls: ["./questions.component.scss"]
 })
 export class QuestionsComponent implements OnInit {
-
 	@ViewChild("regform") questionForm: NgForm;
 
 	questionList: Question[] = [];
@@ -37,24 +42,17 @@ export class QuestionsComponent implements OnInit {
 		config: NgbAccordionConfig
 	) {
 		config.closeOthers = true;
-		config.type = 'info';
+		config.type = "info";
 	}
 
 	ngOnInit() {
-		var rellaxHeader = new Rellax('.rellax-header');
-
-		// var navbar = document.getElementsByTagName('nav')[0];
-		// navbar.classList.add('navbar-transparent');
-		// var body = document.getElementsByTagName('body')[0];
-		// body.classList.add('index-page');
-
+		var rellaxHeader = new Rellax(".rellax-header");
 		this.currentQuestion = new Question();
 		this.refreshQuestionList();
 	}
 
 	createQuestion(questionForm: NgForm) {
-		if (!this.isFormValid())
-			return;
+		if (!this.isFormValid()) return;
 
 		var question = questionForm.value;
 		var correct_choice = question[question["correct_choice"]];
@@ -70,17 +68,16 @@ export class QuestionsComponent implements OnInit {
 				error => console.log(error)
 			);
 		} else if (this.submitQuestionText == "SAVE CHANGES") {
-
 			question.question_id = this.currentQuestion.question_id;
 
 			console.log("UPDATE REQUEST BODY: " + JSON.stringify(question));
 
 			this.http.put(aws_url.UPDATE_QUESTION_URL, question).subscribe(
-				(response) => {
+				response => {
 					console.log("RESPONSE FOR UPDATE QUESTION: " + response);
 					this.resetForm();
 				},
-				(error) => console.log(error)
+				error => console.log(error)
 			);
 		}
 	}
@@ -90,34 +87,6 @@ export class QuestionsComponent implements OnInit {
 		this.currentQuestion = question;
 
 		console.log("SELECTED QUESTION FOR EDITING: " + JSON.stringify(question));
-
-		// this.http.get(aws_url.GET_CHOICE_URL + "?question_id=" + question.question_id).subscribe(
-		// 	response => {
-		// 		console.log("ON EDIT QUESTION RESPONSE: " + JSON.stringify(response.json()));
-		// 		var responseData = response.json();
-
-		// 		this.questionForm.controls["choice_1"].setValue(responseData[0].choice);
-		// 		this.questionForm.controls["choice_2"].setValue(responseData[1].choice);
-		// 		this.questionForm.controls["choice_3"].setValue(responseData[2].choice);
-		// 		this.questionForm.controls["choice_4"].setValue(responseData[3].choice);
-
-		// 		if (responseData[0].is_correct == 1) {
-		// 			this.questionForm.controls["correct_choice"].setValue("choice_1");
-		// 		}
-		// 		else if (responseData[1].is_correct == 1) {
-		// 			this.questionForm.controls["correct_choice"].setValue("choice_2");
-		// 		}
-		// 		else if (responseData[2].is_correct == 1) {
-		// 			this.questionForm.controls["correct_choice"].setValue("choice_3");
-		// 		}
-		// 		else if (responseData[3].is_correct == 1) {
-		// 			this.questionForm.controls["correct_choice"].setValue("choice_4");
-		// 		}
-		// 	},
-		// 	error => {
-		// 		console.log(error);
-		// 	}
-		// );
 
 		this.questionForm.controls["question"].setValue(question.question);
 		this.questionForm.controls["choice_1"].setValue(question.choice_1);
@@ -144,21 +113,6 @@ export class QuestionsComponent implements OnInit {
 		}
 
 		this.currentQuestion.question_id = question.question_id;
-
-
-
-		try 
-		{
-			window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
-			console.log("success ho gaya");
-		}
-		catch (e) 
-		{
-			window.scrollTo(0, 0);
-			console.log("fail ho gaya");
-		}
-
-
 	}
 
 	refreshQuestionList() {
@@ -169,31 +123,16 @@ export class QuestionsComponent implements OnInit {
 
 				var data = response.json();
 
-				if (data.length > 0)
-					this.questionListText = "Question List";
-				else
-					this.questionListText = "Question List is Empty"
+				if (data.length > 0) this.questionListText = "Question List";
+				else this.questionListText = "Question List is Empty";
 
 				this.questionList.push(...data);
 
-				this.questionList.sort(
-					function (a, b) {
-						if (a.question_id > b.question_id)
-							return 1;
-						if (a.question_id < b.question_id)
-							return -1;
-						return 0;
-					}
-				);
-
-				// data.forEach(element => {
-				// 	var question = new Question();
-				// 	question.question_id = element.question_id;
-				// 	question.question = element.question;
-				// 	question.is_active = element.is_active;
-
-				// 	this.questionList.push(question);
-				// });
+				this.questionList.sort(function (a, b) {
+					if (a.question_id > b.question_id) return 1;
+					if (a.question_id < b.question_id) return -1;
+					return 0;
+				});
 			},
 			error => {
 				console.log(error);
@@ -206,18 +145,23 @@ export class QuestionsComponent implements OnInit {
 
 		var deleteQuestionPrompt = confirm("Delete this question?");
 
-		if (!deleteQuestionPrompt)
-			return;
+		if (!deleteQuestionPrompt) return;
 
-		this.http.delete(aws_url.DELETE_QUESTION_URL + "?question_id=" + this.currentQuestion.question_id).subscribe(
-			(response) => {
-				console.log(response);
-				this.resetForm();
-			},
-			(error) => {
-				console.log(error);
-			}
-		);
+		this.http
+			.delete(
+				aws_url.DELETE_QUESTION_URL +
+				"?question_id=" +
+				this.currentQuestion.question_id
+			)
+			.subscribe(
+				response => {
+					console.log(response);
+					this.resetForm();
+				},
+				error => {
+					console.log(error);
+				}
+			);
 	}
 
 	resetForm() {
@@ -228,7 +172,8 @@ export class QuestionsComponent implements OnInit {
 	}
 
 	isFormValid() {
-		if (this.questionForm.controls["question"].value != null &&
+		if (
+			this.questionForm.controls["question"].value != null &&
 			this.questionForm.controls["question"].value.trim() != "" &&
 			this.questionForm.controls["choice_1"].value != null &&
 			this.questionForm.controls["choice_1"].value.trim() != "" &&
@@ -239,7 +184,8 @@ export class QuestionsComponent implements OnInit {
 			this.questionForm.controls["choice_4"].value != null &&
 			this.questionForm.controls["choice_4"].value.trim() != "" &&
 			this.questionForm.controls["correct_choice"].value != null &&
-			this.questionForm.controls["correct_choice"].value.trim() != "") {
+			this.questionForm.controls["correct_choice"].value.trim() != ""
+		) {
 			console.log(this.questionForm.controls["question"].value);
 			console.log(this.questionForm.controls["choice_1"].value);
 			console.log(this.questionForm.controls["choice_2"].value);
@@ -248,15 +194,10 @@ export class QuestionsComponent implements OnInit {
 			console.log(this.questionForm.controls["correct_choice"].value);
 
 			return true;
-		}
-
-		else {
+		} else {
 			alert("Please enter all the required fields");
 			return false;
 		}
 	}
 
-	getStyle() {
-		return 'translate3d(0px, 1000px, 0px);'
-	}
 }

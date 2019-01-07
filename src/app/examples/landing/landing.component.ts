@@ -35,10 +35,6 @@ export class LandingComponent implements OnInit {
 
 	isDataLoaded: boolean = false;
 
-	//  url = 'https://0sn0th0du1.execute-api.ap-south-1.amazonaws.com/dev/question/read/current';
-	//  url ='https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/question';
-	//  nextquestionurl="https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/question/next";
-
 	constructor(
 		public auth: AuthorizationService,
 		public _router: Router,
@@ -79,7 +75,7 @@ export class LandingComponent implements OnInit {
 			.subscribe(
 				data => {
 					this._data = data;
-					console.log("this._data-->" + this._data);
+					console.log("this._data-->" + JSON.stringify(this._data));
 					this._data = Array.from(data);
 					// this.subscribeToData();
 					this.isDataLoaded = true;
@@ -102,7 +98,7 @@ export class LandingComponent implements OnInit {
 		console.log("submitted question id: " + question["question_id"]);
 
 		this.postsSubscription = this.restApi
-			.post(aws_url.GET_NEXT_QUESTION_URL, question)
+			.put(aws_url.GET_NEXT_QUESTION_URL, question)
 			.subscribe(
 				data => {
 					console.log("Anuj : " + data);
@@ -121,47 +117,6 @@ export class LandingComponent implements OnInit {
 				}
 			);
 	}
-
-	// ngOnInit() {
-	//   console.log("inside component");
-
-	//    this.refreshData();
-	// this.next(1);
-	/*
-	var authenticatedUser = this.auth.getAuthenticatedUser();
-	if (authenticatedUser == null) {
-	  return;
-	}
-	authenticatedUser.getSession( (err, session) => {
-	  if (err) {
-		console.log(err);
-		return;
-	  }
-	  const token = session.getIdToken().getJwtToken();      
-	  const headers = new Headers();
-	  headers.append('Authorization', token);      
-	  var that = this;
-	  this.auth.getAuthenticatedUser().getSession((err, session) => {
-		if (err) {
-		  console.log(err);
-		  return;
-		}
-		const token = session.getIdToken().getJwtToken();        
-		const headers = new Headers();
-		headers.append('Authorization', token);        
-		this.http.get('https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/question', { headers: headers })
-		  .subscribe(
-		  response => { 
-			console.log("response.json()-->"+response.json());  
-			this._data = response.json();
-		  },
-		  error => {
-			console.log(error);
-		  }
-		);
-	  });
-	});*/
-	//}
 
 	ngOnDestroy() {
 		var body = document.getElementsByTagName("body")[0];
