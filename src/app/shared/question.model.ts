@@ -9,6 +9,8 @@ export class Question {
   correct_choice: string;
   round:  string;
   team: string;
+  asset_name: string;
+  asset_path: string;
   
   constructor() {}
 }

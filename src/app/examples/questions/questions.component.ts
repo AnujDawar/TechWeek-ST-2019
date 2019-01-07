@@ -32,6 +32,8 @@ export class QuestionsComponent implements OnInit {
 	currentQuestion: Question;
 	public questionInputBox: string;
 	questionListText: string = "Question List is Empty";
+	asset_path: string;
+	asset_name: string;
 
 	constructor(
 		public auth: AuthorizationService,
@@ -93,6 +95,10 @@ export class QuestionsComponent implements OnInit {
 		this.questionForm.controls["choice_2"].setValue(question.choice_2);
 		this.questionForm.controls["choice_3"].setValue(question.choice_3);
 		this.questionForm.controls["choice_4"].setValue(question.choice_4);
+		this.questionForm.controls["asset_name"].setValue(question.asset_name);
+		
+		this.asset_name = question.asset_name;
+		this.asset_path = question.asset_path;
 
 		switch (question.correct_choice) {
 			case question.choice_1:
