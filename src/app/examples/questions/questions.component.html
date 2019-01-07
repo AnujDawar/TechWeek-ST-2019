@@ -1,19 +1,15 @@
-<div *ngIf="auth.isLoggedIn() && globalservice.isAUser() && isDataLoaded">
-	<div class="page-header clear-filter" filter-color="orange">
-		<div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
-		<div class="container">
-			<div class="col-md-4 content-center">
-				<div class="card  card-plain">
-					<div class="card-body">
-
+<div class="page-header clear-filter" filter-color="orange">
+	<div class="page-header-image rellax-header" data-rellax-speed="-10" style="background-image: url('assets/img/header.jpg');"></div>
+	<div class="container scrollable-content" id="scrollableQuestionList">
+		<table style="width: 100%;">
+			<thead>
+				<tr>
+					<th>
 						<form (ngSubmit)="createQuestion(regform)" #regform="ngForm">
-							<h4 class="h3-seo" style="color: gold">
-								Manage Questions Module
-							</h4>
 
-							<br /><br />
+							<br /><br /><br /><br />
 
-							<div class="input-group form-group-no-border" [ngClass]="{ 'input-group-focus': focus === true }">
+							<div class="input-group form-group-no-border" [ngClass]="{ 'input-group-focus': focus === true }" id="scrollToThisDiv1">
 								<div class="input-group-prepend">
 									<span class="input-group-text">
 										<i class="now-ui-icons text_caps-small"></i></span>
@@ -59,26 +55,26 @@
 							</div>
 							<br />
 
-							<div class="col-lg-12 col-sm-8 col-xm-4 col-sm-offset-0 text">
+							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-12 col-xl-12">
 								<label style="font-size: 150%; color: gold">
 									Select The Correct Choice:
 								</label>
 								<br /><br />
 								<div style="text-align: center">
 									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%;">
-										<input style="transform: scale(1.5);" type="radio" ngModel name="correct_choice" value="choice_1" id="radioOption1" />
+										<input style="transform: scale(1.5); " type="radio" ngModel name="correct_choice" value="choice_1" id="radioOption1" />
 										Option 1
 									</label>
-									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%">
-										<input style="transform: scale(1.5);" type="radio" ngModel name="correct_choice" value="choice_2" id="radioOption2" />
+									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%;" >
+										<input style="transform: scale(1.5); " type="radio" ngModel name="correct_choice" value="choice_2" id="radioOption2" />
 										Option 2
 									</label>
-									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%">
-										<input style="transform: scale(1.5);" type="radio" ngModel name="correct_choice" value="choice_3" id="radioOption3" />
+									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%;">
+										<input style="transform: scale(1.5); " type="radio" ngModel name="correct_choice" value="choice_3" id="radioOption3" />
 										Option 3
 									</label>
-									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%">
-										<input style="transform: scale(1.5);" type="radio" ngModel name="correct_choice" value="choice_4" id="radioOption4" />
+									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%;">
+										<input style="transform: scale(1.5); " type="radio" ngModel name="correct_choice" value="choice_4" id="radioOption4" />
 										Option 4
 									</label>
 								</div>
@@ -86,7 +82,7 @@
 							</div>
 
 							<button style="width: 100%; padding-top: 1%; padding-bottom: 1%;" type="submit" [ngClass]="{ 'btn-success': submitQuestionText == 'ADD QUESTION', 
-										 'btn-save-changes': submitQuestionText == 'SAVE CHANGES'}">
+															 'btn-save-changes': submitQuestionText == 'SAVE CHANGES'}">
 								{{ submitQuestionText }}
 							</button>
 						</form>
@@ -95,24 +91,25 @@
 						 (click)="deleteQuestion()" class="btn-danger">
 							DELETE QUESTION
 						</button>
-
-						<br /><br />
-
-						<div class="form-bottom">
-							<h3 style="text-align: center; font-style: oblique">{{ questionListText }}</h3>
-							<div class="row">
-								<div class="col-md-12">
-									<ul class="list-group">
-										<button class="button" *ngFor="let question of questionList" style="vertical-align:middle" (click)="onEditQuestion(question)">
-											<span>{{ question.question }}</span>
-										</button>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+					</th>
+				</tr>
+			</thead>
+			<br><br>
+			<tr>
+				<td>
+					<h3 style="text-align: center; font-style: oblique" id="anchor">{{ questionListText }}</h3>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<ul class="list-group">
+						<button class="button" *ngFor="let question of questionList" style="vertical-align:middle" 
+						(click)="onEditQuestion(question)">
+							<span>{{ question.question }}</span>
+						</button>
+					</ul>
+				</td>
+			</tr>
+		</table>
 	</div>
 </div>

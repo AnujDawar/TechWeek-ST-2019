@@ -2,7 +2,7 @@
     display: inline-block;
     background-color: transparent;
     border: 2px solid white;
-    color: gold;
+    color: white;
     text-align: center;
     font-size: 150%;
     transition: all 0.5s;
@@ -52,3 +52,34 @@
     color: white;
     cursor: pointer;
   }
+
+  .scrollable-content {
+    overflow-x:hidden;
+    overflow-y:scroll; // manage scrollbar content overflow settings
+  }
+  .scrollable-content::-webkit-scrollbar {
+    width:30px; // manage scrollbar width here
+  }
+  .scrollable-content::-webkit-scrollbar * {
+    background:transparent; // manage scrollbar background color here
+  }
+  .scrollable-content::-webkit-scrollbar-thumb {
+    background:rgba(255, 0, 0, 0) !important; // manage scrollbar thumb background color here
+  }
+
+  .table-fixed thead {
+    width: 100%;
+    }
+    .table-fixed tbody {
+    height: 500px;
+    overflow-x: auto;
+    overflow-y: auto;
+    width: 100%;
+    }
+    .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+    display: block;
+    }
+    .table-fixed tbody td, .table-fixed thead > tr> th {
+    display: inline-block;
+    border-bottom-width: 0;
+    }
