@@ -59,15 +59,32 @@
 									<span class="input-group-text">
 										<i class="now-ui-icons text_caps-small"></i></span>
 								</div>
+								<input type="text" name="team" placeholder="Enter Team Name.." class="form-control" ngModel id="team" (focus)="focus = true"
+								 (blur)="focus = false" ng-required="true" style="color: white; font-weight: 700" />
+							</div>
+
+							<div class="input-group form-group-no-border" [ngClass]="{ 'input-group-focus': focus === true }">
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										<i class="now-ui-icons text_caps-small"></i></span>
+								</div>
+								<input type="text" name="round" placeholder="Enter Round Name.." class="form-control" ngModel id="round"
+								 (focus)="focus = true" (blur)="focus = false" ng-required="true" style="color: white; font-weight: 700" />
+							</div>
+
+							<div class="input-group form-group-no-border" [ngClass]="{ 'input-group-focus': focus === true }">
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										<i class="now-ui-icons text_caps-small"></i></span>
+								</div>
 								<input type="text" name="asset_name" placeholder="Enter Asset Name.." class="form-control" ngModel id="asset_name"
 								 (focus)="focus = true" (blur)="focus = false" ng-required="true" style="color: white; font-weight: 700" />
 							</div>
 
 							<div style="height: 20%; width: 100%; text-align: center; vertical-align: middle;">
-								<img src="{{ asset_path }}" alt="{{ asset_name }}" class="img-responsive" 
-								style="align-content: center; text-align: center; width: 30%; height:30%">
+								<img src="{{ asset_path }}" alt="{{ asset_name }}" class="img-responsive" style="align-content: center; text-align: center; width: 30%; height:30%">
 							</div>
-							
+
 							<br />
 
 							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-12 col-xl-12">
@@ -80,7 +97,7 @@
 										<input style="transform: scale(1.5); " type="radio" ngModel name="correct_choice" value="choice_1" id="radioOption1" />
 										Option 1
 									</label>
-									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%;" >
+									<label style="font-size: 125%; margin-left: 5%; margin-right: 5%;">
 										<input style="transform: scale(1.5); " type="radio" ngModel name="correct_choice" value="choice_2" id="radioOption2" />
 										Option 2
 									</label>
@@ -118,8 +135,7 @@
 			<tr>
 				<td>
 					<ul class="list-group">
-						<button class="button" *ngFor="let question of questionList" style="vertical-align:middle" 
-						(click)="onEditQuestion(question)">
+						<button class="button" *ngFor="let question of questionList" style="vertical-align:middle" (click)="onEditQuestion(question)">
 							<span>{{ question.question }}</span>
 						</button>
 					</ul>

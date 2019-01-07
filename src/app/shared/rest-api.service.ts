@@ -52,10 +52,6 @@ export class RestApiservice {
         this.requestOptions = {
           headers: new Headers(headers),
         };
-
-        // console.log("headers--->"+headers);
-        //return  this.http.get('https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/question',requestOptions);
-
       });
     });
     return this.http.get(baseUrl, this.requestOptions).map(this.extractData).catch(this.handleError);

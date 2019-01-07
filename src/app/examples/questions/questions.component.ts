@@ -16,6 +16,7 @@ import { aws_url } from "../../shared/urls";
 
 import { NgbAccordionConfig } from "@ng-bootstrap/ng-bootstrap";
 import * as Rellax from "rellax";
+import { RestApiservice } from "app/shared/rest-api.service";
 
 @Component({
 	selector: "app-questions",
@@ -41,6 +42,7 @@ export class QuestionsComponent implements OnInit {
 		public http: Http,
 		public globalservice: GlobalService,
 		private renderer: Renderer,
+		public restApi: RestApiservice,
 		config: NgbAccordionConfig
 	) {
 		config.closeOthers = true;
@@ -58,12 +60,12 @@ export class QuestionsComponent implements OnInit {
 
 		var question = questionForm.value;
 		var correct_choice = question[question["correct_choice"]];
-
+		
 		question["is_active"] = 0;
 		question["correct_choice"] = correct_choice;
 
 		if (this.submitQuestionText == "ADD QUESTION") {
-			this.http.post(aws_url.CREATE_QUESTION_URL, question).subscribe(
+			this.restApi.post(aws_url.CREATE_QUESTION_URL, question).subscribe(
 				response => {
 					this.resetForm();
 				},
@@ -74,7 +76,7 @@ export class QuestionsComponent implements OnInit {
 
 			console.log("UPDATE REQUEST BODY: " + JSON.stringify(question));
 
-			this.http.put(aws_url.UPDATE_QUESTION_URL, question).subscribe(
+			this.restApi.put(aws_url.UPDATE_QUESTION_URL, question).subscribe(
 				response => {
 					console.log("RESPONSE FOR UPDATE QUESTION: " + response);
 					this.resetForm();
@@ -96,7 +98,9 @@ export class QuestionsComponent implements OnInit {
 		this.questionForm.controls["choice_3"].setValue(question.choice_3);
 		this.questionForm.controls["choice_4"].setValue(question.choice_4);
 		this.questionForm.controls["asset_name"].setValue(question.asset_name);
-		
+		this.questionForm.controls["round"].setValue(question.round);
+		this.questionForm.controls["team"].setValue(question.team);
+
 		this.asset_name = question.asset_name;
 		this.asset_path = question.asset_path;
 
@@ -119,20 +123,22 @@ export class QuestionsComponent implements OnInit {
 		}
 
 		this.currentQuestion.question_id = question.question_id;
+		this.currentQuestion.asset_name = question.asset_name;
 	}
 
 	refreshQuestionList() {
 		//	read all the questions
-		this.http.get(aws_url.GET_ALL_QUESTION_URL).subscribe(
-			response => {
-				console.log("READ ALL QUESTIONS RESPONSE: " + JSON.stringify(response));
 
-				var data = response.json();
+		this.restApi.get(aws_url.GET_ALL_QUESTION_URL).subscribe(
+			response => {
+				var data = Array.from(response);
+
+				// var data = response.json();
 
 				if (data.length > 0) this.questionListText = "Question List";
 				else this.questionListText = "Question List is Empty";
 
-				this.questionList.push(...data);
+				this.questionList.push(...response);
 
 				this.questionList.sort(function (a, b) {
 					if (a.question_id > b.question_id) return 1;
@@ -153,7 +159,7 @@ export class QuestionsComponent implements OnInit {
 
 		if (!deleteQuestionPrompt) return;
 
-		this.http
+		this.restApi
 			.delete(
 				aws_url.DELETE_QUESTION_URL +
 				"?question_id=" +
@@ -171,6 +177,8 @@ export class QuestionsComponent implements OnInit {
 	}
 
 	resetForm() {
+		this.asset_name = "";
+		this.asset_path = "";
 		this.questionForm.reset();
 		this.submitQuestionText = "ADD QUESTION";
 		this.questionList = [];
