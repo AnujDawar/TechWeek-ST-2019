@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of _data | paginate: { itemsPerPage: 3, currentPage: p }; let i = index">
+                <tr *ngFor="let item of _data | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
                
                  <td>{{item.team_name}}</td>
                
@@ -31,21 +31,24 @@
                     <td class="td-actions text-right">
                             
  
-
+                        <div  class="row">
+                                <div  class="col-md-12">
                                     <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">  <i class="now-ui-icons text_caps-small"></i></span>
                                             </div>
-                                              <input type="number" name="score" ngModel class="form-control" placeholder="Team Name..." (focus)="focus=true" (blur)="focus=false" >
+                                              <input type="number" name="score" style="width: 5%" ngModel class="form-control" placeholder="Team Name..." (focus)="focus=true" (blur)="focus=false" >
+                                              <button type="button" rel="tooltip"  (click)="removeTeam()" class="btn btn-sm btn-round btn-success">
+                                                    <i class="now-ui-icons ui-1_simple-add"></i>
+                                               </button>
+                                               <button type="button"  (click)="removeTeam()" rel="tooltip" class="btn btn-sm btn-round btn-danger">
+                                                  <i class="now-ui-icons ui-1_simple-remove"></i>
+                                                  </button> 
                                           </div>
 
-                                     <button type="button" rel="tooltip"  (click)="removeTeam()" class="btn btn-sm btn-round btn-success">
-                                          <i class="now-ui-icons ui-1_simple-add"></i>
-                                     </button>
-                                     <button type="button"  (click)="removeTeam()" rel="tooltip" class="btn btn-sm btn-round btn-danger">
-                                        <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button> 
                                   
+                                    </div>
+                                    </div>
                     </td>
                 </tr>
             </tbody>
