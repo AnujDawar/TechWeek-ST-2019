@@ -42,7 +42,7 @@ export class TeamComponent implements OnInit {
 
     const jsonData = {
     "team_name" : teamName,
-     "is_active" : isActive
+     "is_active" : 1
     };
     this.restApi.post(aws_url.CREATE_TEAM_URL,jsonData).subscribe(
       (data) => {        
