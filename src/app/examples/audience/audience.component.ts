@@ -24,11 +24,7 @@ export class AudienceComponent implements OnInit {
   data: Date = new Date();
   focus;
   focus1;
-
   bAuthenticated = false;
-
-  // USER_RESPONSE_URL="https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/userresponses";
-
   _data: any;
   private timerSubscription: Subscription;
   private postsSubscription: Subscription;
@@ -36,8 +32,10 @@ export class AudienceComponent implements OnInit {
   busy: Subscription;
   error = '';
 
-  isDataLoaded: boolean = false;
-  //  url ='https://csq4s4nraf.execute-api.ap-south-1.amazonaws.com/dev/question';
+  isDataLoaded: boolean = false;  
+  previous;
+  current;
+  next;
 
   constructor(public auth: AuthorizationService, public _router: Router, public restApi: RestApiservice, public globalService: GlobalService) { }
 
@@ -50,10 +48,7 @@ export class AudienceComponent implements OnInit {
     console.log("Choice -->" + choice_id);
     console.log("choice_val -->" + this.choice_decr);
     console.log("question_id -->" + question_id);
-    // if(!this.isFormValid(teamForm))
-    // 	return;
-
-
+  
     const jsonData = {
       "user_email": this.globalService.localStorageItem('email'),
       "question_id": question_id,
@@ -82,8 +77,6 @@ export class AudienceComponent implements OnInit {
 
 
   ngOnInit() {
-    //var rellaxHeader = new Rellax('.rellax-header');
-
     var body = document.getElementsByTagName('body')[0];
     body.classList.add('landing-page');
     var navbar = document.getElementsByTagName('nav')[0];
@@ -114,7 +107,8 @@ export class AudienceComponent implements OnInit {
         this._data = Array.from(data);
         this.subscribeToData();
         this.isDataLoaded = true;
-
+        this.current=this._data[0].question_id;
+        this.previous=this._data[0].previous;
       },
       function (error) {
         console.log(error);

@@ -13,32 +13,32 @@
                             
                               <div class="form-check form-check-radio input-group form-group-no-border">
                                     <label class="form-check-label">
-                                        <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[0].choice_id" (click)="setChoiceDescr(_data[0].choice)" checked>
+                                        <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[0].choice_1"  (click)="setChoiceDescr(_data[0].choice_1)" checked>
                                         <span class="form-check-sign"></span>
-                                       {{_data[0].choice}} 
+                                       {{_data[0].choice_1}} 
                                     </label>
                                 </div>
               
                                 <div class="form-check form-check-radio input-group form-group-no-border">
                                         <label class="form-check-label">
-                                            <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[1].choice_id" (click)="setChoiceDescr(_data[1].choice)" checked>
+                                            <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice"  [value]="_data[0].choice_2"  (click)="setChoiceDescr(_data[0].choice_2)" checked>
                                             <span class="form-check-sign"></span>
-                                            {{_data[1].choice}} 
+                                            {{_data[0].choice_2}} 
                                         </label>
                                     </div>
               
                                     <div class="form-check form-check-radio input-group form-group-no-border">
                                             <label class="form-check-label">
-                                                <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[2].choice_id" (click)="setChoiceDescr(_data[2].choice)" checked>
+                                                <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[0].choice_3" (click)="setChoiceDescr(_data[0].choice_3)" checked>
                                                 <span class="form-check-sign"></span>
-                                                {{_data[2].choice}} 
+                                                {{_data[0].choice_3}} 
                                             </label>
                                         </div>
                                         <div class="form-check form-check-radio input-group form-group-no-border">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[3].choice_id" (click)="setChoiceDescr(_data[3].choice)" checked>
+                                                    <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice" [value]="_data[0].choice_4" (click)="setChoiceDescr(_data[0].choice_4)" checked>
                                                     <span class="form-check-sign"></span>
-                                                    {{_data[3].choice}} 
+                                                    {{_data[0].choice_4}} 
                                                 </label>
                                         </div>
                              
@@ -46,9 +46,7 @@
                                       <input type="submit" class="btn btn-primary btn-round btn-lg "  value="Submit Answer!" />
                                      &nbsp;&nbsp;
                                       <button  class="btn btn-primary btn-round btn-lg " (click)="back()">Back</button>
-
                                 </div>
-
                                 <div *ngIf="error">
                                    {{error}}
                                 </div>
