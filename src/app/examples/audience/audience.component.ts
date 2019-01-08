@@ -32,7 +32,7 @@ export class AudienceComponent implements OnInit {
   busy: Subscription;
   error = '';
 
-  isDataLoaded: boolean = false;  
+  isDataLoaded: boolean = false;
   previous;
   current;
   next;
@@ -48,26 +48,22 @@ export class AudienceComponent implements OnInit {
     console.log("Choice -->" + choice_id);
     console.log("choice_val -->" + this.choice_decr);
     console.log("question_id -->" + question_id);
-  
+
     const jsonData = {
       "user_email": this.globalService.localStorageItem('email'),
       "question_id": question_id,
       "answer_time": new Date(),
-      "choice_id": choice_id,
-      "is_correct": 1,
-      "choice_descr": choice_str_val,
+      "user_response": choice_str_val,
     };
     this.restApi.post(aws_url.STORE_USER_RESPONSE_URL, jsonData).subscribe(
       (data) => {
         console.log("Data" + data);
-
       },
       (err) => {
         console.log(err);
-        this.error = "Not able to create team. Please try again.";
+        this.error = "Not able to Store user response. Please try again.";
       }
     );
-
   }
 
   setChoiceDescr(choice_decr) {
@@ -104,11 +100,15 @@ export class AudienceComponent implements OnInit {
       (data) => {
         this._data = data;
         console.log("this._data-->" + this._data);
+
         this._data = Array.from(data);
         this.subscribeToData();
         this.isDataLoaded = true;
-        this.current=this._data[0].question_id;
-        this.previous=this._data[0].previous;
+
+        if (this._data.length > 0) {
+          this.current = this._data[0].question_id;
+          this.previous = this._data[0].previous;
+        }
       },
       function (error) {
         console.log(error);
