@@ -36,6 +36,7 @@ export class QuestionsComponent implements OnInit {
 	asset_path: string;
 	asset_name: string;
 	mediaType: string;
+	focus: any;
 
 	constructor(
 		public auth: AuthorizationService,
@@ -64,6 +65,12 @@ export class QuestionsComponent implements OnInit {
 
 		question["is_active"] = 0;
 		question["correct_choice"] = correct_choice;
+
+		if(this.mediaType == "")
+			question.mediaType = undefined;
+
+		console.log("QUESTION : \n\n\n");
+		console.log(question);
 
 		if (this.submitQuestionText == "ADD QUESTION") {
 			this.restApi.post(aws_url.CREATE_QUESTION_URL, question).subscribe(
