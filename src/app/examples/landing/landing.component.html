@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="input-group form-group-no-border">
-                            <input *ngIf='auth.isLoggedIn() && (globalservice.isSUser() || ! (globalservice.isAUser() || globalservice.isSUser() ))'
+                            <input *ngIf='auth.isLoggedIn() && !(globalservice.isAUser() || globalservice.isSUser())'
                                 type="submit" class="btn btn-primary btn-round btn-lg " value="Submit Answer!" />
                             &nbsp;&nbsp;
                             <button (click)="next(_data[0])" class="btn btn-primary btn-round btn-lg ">Next Question!</button>
