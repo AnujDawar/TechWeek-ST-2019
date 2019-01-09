@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
           this.globalService.setlocalStorageItem("email",email);
           if(this.globalService.isAUser()||this.globalService.isSUser())
           {
-          this._router.navigateByUrl('/index');
+            this._router.navigateByUrl('/index');
           }
           else
           {
@@ -63,6 +63,8 @@ export class LoginComponent implements OnInit {
 
           this.error="";
         }, (err)=> {
+          form.value.email='';
+          form.value.password='';
           this.emailVerificationMessage = true;
           this.error ="Invalid credentials. Please try again.";
         });   
@@ -72,16 +74,14 @@ export class LoginComponent implements OnInit {
       isFormValid(form: NgForm)
       {
         if(form.controls["email"].value != null &&
-          form.controls["email"].value.trim() != "" &&
-          form.controls["password"].value != null )
+          form.controls["email"].value.trim() != "" &&  
+          form.controls["password"].value !== "")
           {
             return true;
           }
-    
           else
           {
            this.error= "Please enter all the required fields";
-    
             return false;
           }
       }

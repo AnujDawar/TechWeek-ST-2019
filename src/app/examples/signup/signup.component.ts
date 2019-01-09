@@ -128,10 +128,12 @@ isFormValid(form: NgForm)
 		if(form.controls["name"].value != null &&
 			form.controls["name"].value.trim() != "" &&
 			form.controls["mobile"].value != null &&
-      form.controls["mobile"].value.trim() != ""&&
+      form.controls["mobile"].value.trim() != "" &&
       form.controls["email"].value != null &&
       form.controls["email"].value.trim() != ""&&
-    	form.controls["password"].value != null )
+      form.controls["password"].value != null  &&
+      form.controls["password"].value != ""
+     )
 			{
 				return true;
 			}
@@ -139,7 +141,6 @@ isFormValid(form: NgForm)
 			else
 			{
 			 this.error= "Please enter all the required fields";
-
 				return false;
 			}
 	}
