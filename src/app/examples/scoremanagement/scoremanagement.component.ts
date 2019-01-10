@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { AuthorizationService } from "../../shared/authorization.service";
 import { Router } from "@angular/router";
 import * as Rellax from "rellax";
@@ -16,6 +16,8 @@ import { Team } from "app/shared/Team.modal";
 export class ScoremanagementComponent implements OnInit {
   changeScore: any;
 
+  @ViewChild("regform") scoreRef: NgForm;
+
   constructor(
     public auth: AuthorizationService,
     public _router: Router,
@@ -26,6 +28,7 @@ export class ScoremanagementComponent implements OnInit {
   _data: any;
   isDataLoaded = false;
   error = "";
+  score;
 
   p: number = 1;
 
@@ -54,6 +57,7 @@ export class ScoremanagementComponent implements OnInit {
       this.restApi.put(aws_url.UPDATE_TEAM_URL, team).subscribe(
         data => {
           console.log(data);
+          this.scoreRef.reset();
         },
         error => {
           console.log(error);
@@ -68,6 +72,7 @@ export class ScoremanagementComponent implements OnInit {
       this.restApi.put(aws_url.UPDATE_TEAM_URL, team).subscribe(
         data => {
           console.log(data);
+          this.scoreRef.reset();
         },
         error => {
           console.log(error);

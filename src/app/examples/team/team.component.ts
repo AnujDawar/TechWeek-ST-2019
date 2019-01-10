@@ -44,6 +44,7 @@ export class TeamComponent implements OnInit {
     this.restApi.post(aws_url.CREATE_TEAM_URL,jsonData).subscribe(
       (data) => {        
        console.log("Data"+data);
+       teamForm.reset();
        this.getTeam() ;
       },
       (err) => {

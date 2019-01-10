@@ -5,50 +5,47 @@
             <div class="col-md-4 content-center" *ngIf="auth.isLoggedIn() && (globalservice.isSUser() || globalservice.isAUser())">
                 <div class="card card-plain">
                     <div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Team Name</th>
-                                    <th class="text-right">Score</th>
-                                    <th class="text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of _data | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
-                                    <td>{{item.team_name}}</td>
-                                    <td>{{item.score}}</td>
-                                    <td class="td-actions text-right">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"> <i class="now-ui-icons text_caps-small"></i></span>
-                                                    </div>
-                                                    <input type="number" 
-                                                        #score
-                                                        name="score" 
-                                                        style="width: 5%" 
-                                                        ngModel 
-                                                        class="form-control"
-                                                        placeholder="Enter Score..." 
-                                                        style="color: white;"
-                                                        (focus)="focus=true" 
-                                                        (blur)="focus=false">
+                        <form #regform="ngForm">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Team Name</th>
+                                        <th class="text-right">Score</th>
+                                        <th class="text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of _data | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+                                        <td>{{item.team_name}}</td>
+                                        <td>{{item.score}}</td>
+                                        <td class="td-actions text-right">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"> <i class="now-ui-icons text_caps-small"></i></span>
+                                                        </div>
+                                                        <input type="number" #score name="score" style="width: 5%"
+                                                            ngModel class="form-control" placeholder="Enter Score..."
+                                                            style="color: white;" (focus)="focus=true" (blur)="focus=false">
 
-                                                    <button type="button" rel="tooltip" (click)="addScore(item, score.value)" class="btn btn-sm btn-round btn-success">
-                                                        <i class="now-ui-icons ui-1_simple-add"></i>
-                                                    </button>
-                                                    <button type="button" (click)="deleteScore(item, score.value)" rel="tooltip" class="btn btn-sm btn-round btn-danger">
-                                                        <i class="now-ui-icons ui-1_simple-delete"></i>
-                                                    </button>
+                                                        <button type="button" rel="tooltip" (click)="addScore(item, score.value)"
+                                                            class="btn btn-sm btn-round btn-success">
+                                                            <i class="now-ui-icons ui-1_simple-add"></i>
+                                                        </button>
+                                                        <button type="button" (click)="deleteScore(item, score.value)"
+                                                            rel="tooltip" class="btn btn-sm btn-round btn-danger">
+                                                            <i class="now-ui-icons ui-1_simple-delete"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                        </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                            </table>
+                        </form>
                     </div>
                 </div>
             </div>
