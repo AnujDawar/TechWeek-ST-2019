@@ -78,12 +78,12 @@
                       <p>Manage Scores</p>
                     </a>
                 </li>
-                <li class="nav-item"  *ngIf='auth.isLoggedIn() && !globalService.isAUser() && !globalService.isSUser()'>
+                <!-- <li class="nav-item"  *ngIf='auth.isLoggedIn() && !globalService.isAUser() && !globalService.isSUser()'>
                     <a class="nav-link" (click)="goToQuiz()" href="#" routerLink="/audience">
                       <i class="now-ui-icons objects_diamond"></i>
                       <p>Goto Quiz!</p>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="nav-item" *ngIf="auth.isLoggedIn()">
                     <a class="nav-link" (click)="doLogout()" href="#" routerLink="/login">

@@ -115,13 +115,14 @@ export class AudienceComponent implements OnInit {
 
 				this._data = Array.from(data);
 
-				if(this.previousQuestionId != this._data[0].question_id)
-				{
-					this.previousQuestionId = this._data[0].question_id;
-					this.staticAlertClosed = true;
-					// this.audienceForm.reset();
-					// this.regForm.reset();
-				}
+				if(this._data[0])
+				if (this._data[0].question_id)
+					if (this.previousQuestionId != this._data[0].question_id) {
+						this.previousQuestionId = this._data[0].question_id;
+						this.staticAlertClosed = true;
+						// this.audienceForm.reset();
+						// this.regForm.reset();
+					}
 
 				this.subscribeToData();
 				this.isDataLoaded = true;
