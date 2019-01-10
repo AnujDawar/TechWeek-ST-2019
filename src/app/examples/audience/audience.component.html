@@ -61,7 +61,7 @@
                             <div class="input-group form-group-no-border">
                                 <input type="submit" class="btn btn-primary btn-round btn-lg " value="Submit Answer!" [disabled] = "!staticAlertClosed"/>
                                 &nbsp;&nbsp;
-                                <button class="btn btn-primary btn-round btn-lg " (click)="back()">Back</button>
+                                <button class="btn btn-primary btn-round btn-lg " (click)="back()" [disabled] = "!staticAlertClosed">Back</button>
                             </div>
                             <div *ngIf="error">
                                 {{error}}
