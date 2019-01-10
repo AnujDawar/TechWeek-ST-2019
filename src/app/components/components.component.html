@@ -30,10 +30,10 @@
     <div class="container">
         <div class="content-center brand ">
          
-            <img class="n-logo" src="assets/img/logo-latest.png" alt="TechConnect" style="max-width: 25%;" >
+            <img class="n-logo" src="assets/img/logo-latest.png" alt="TechConnect" style="max-width: 30%; width:25%" >
             <span>&nbsp;</span>
-            <h1 class="h2-seo">
-                Welcome to Tech Week 2019.</h1>
+            <h4 class="h4-seo">
+                Welcome to Tech Week 2019.</h4>
             <h3 *ngIf="!auth.isLoggedIn()">Please register/login to participate in Tech Quiz.</h3>
 
             <div *ngIf='auth.isLoggedIn() && globalservice.isAUser()'>  
