@@ -8,13 +8,22 @@
                     <div class="card-body">
                         <!-- <form  (ngSubmit)="register(regform)" #regform="ngForm"> -->
 
-                       <br/>
-                       <br/>
-                       <br/>
-                       <br/>
-                       <br/>
-                       <br/>
+                        <br />
+                        <br />
+                        <br />
                         <h3>Question: {{_data[0].question}} </h3>
+
+                        <p>
+                            <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+                                [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                                Show Comment
+                            </button>
+                        </p>
+                        <div id="collapseExample" [ngbCollapse]="!isCollapsed">
+                            {{ _data[0].comment }}
+                        </div>
+
+                        <br>
 
                         <figure *ngIf="_data[0].media_type == 'audio'">
                             <figcaption>Listen to the {{ _data[0].asset_name }} :</figcaption>

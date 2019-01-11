@@ -28,6 +28,7 @@ export class LandingComponent implements OnInit {
 	bAuthenticated = false;
 
 	_data: any;
+	isCollapsed = false;
 	private timerSubscription: Subscription;
 	private postsSubscription: Subscription;
 
@@ -110,6 +111,7 @@ export class LandingComponent implements OnInit {
 					} else {
 						this._data = data;
 						this.isDataLoaded = true;
+						this.isCollapsed = false;
 					}
 				},
 				function (error) {
