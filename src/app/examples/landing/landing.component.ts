@@ -16,134 +16,129 @@ import { GlobalService } from "../../shared/global.service";
 import { aws_url } from "../../shared/urls";
 
 @Component({
-	selector: "app-landing",
-	templateUrl: "./landing.component.html",
-	styleUrls: ["./landing.component.scss"]
+  selector: "app-landing",
+  templateUrl: "./landing.component.html",
+  styleUrls: ["./landing.component.scss"]
 })
 export class LandingComponent implements OnInit {
-	data: Date = new Date();
-	focus;
-	focus1;
-	nextQuestionText: string = "Lock Question!";
+  data: Date = new Date();
+  focus;
+  focus1;
+  nextQuestionText: string = "Lock Question!";
 
-	bAuthenticated = false;
+  bAuthenticated = false;
 
-	_data: any;
-	isCollapsed = false;
-	private timerSubscription: Subscription;
-	private postsSubscription: Subscription;
+  _data: any;
+  isCollapsed = false;
+  private timerSubscription: Subscription;
+  private postsSubscription: Subscription;
 
-	busy: Subscription;
+  busy: Subscription;
 
-	isDataLoaded: boolean = false;
+  isDataLoaded: boolean = false;
 
-	constructor(
-		public auth: AuthorizationService,
-		public _router: Router,
-		public restApi: RestApiservice,
-		public globalservice: GlobalService
-	) { }
+  constructor(
+    public auth: AuthorizationService,
+    public _router: Router,
+    public restApi: RestApiservice,
+    public globalservice: GlobalService
+  ) {}
 
-	ngOnInit() {
-		//var rellaxHeader = new Rellax('.rellax-header');
+  ngOnInit() {
+    //var rellaxHeader = new Rellax('.rellax-header');
 
-		var body = document.getElementsByTagName("body")[0];
-		body.classList.add("landing-page");
-		var navbar = document.getElementsByTagName("nav")[0];
-		navbar.classList.add("navbar-transparent");
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.add("landing-page");
+    var navbar = document.getElementsByTagName("nav")[0];
+    navbar.classList.add("navbar-transparent");
 
-		var authenticatedUser = this.auth.getAuthenticatedUser();
-		if (authenticatedUser == null) {
-			this._router.navigateByUrl("/login");
-			return;
-		} else {
-			this.refreshData();
-			this.bAuthenticated = true;
-		}
-	}
+    var authenticatedUser = this.auth.getAuthenticatedUser();
+    if (authenticatedUser == null) {
+      this._router.navigateByUrl("/login");
+      return;
+    } else {
+      this.refreshData();
+      this.bAuthenticated = true;
+    }
+  }
 
-	subscribeToData() {
-		this.timerSubscription = Observable.timer(1000).subscribe(() =>
-			this.refreshData()
-		);
-	}
+  subscribeToData() {
+    this.timerSubscription = Observable.timer(1000).subscribe(() =>
+      this.refreshData()
+    );
+  }
 
-	refreshData(): any {
+  refreshData(): any {
+    console.log("REFRESHING DATA");
 
-		console.log("REFRESHING DATA");
+    this.postsSubscription = this.restApi
+      .get(aws_url.GET_CURRENT_QUESTION_URL)
+      .subscribe(
+        data => {
+          this._data = data;
+          console.log("this._data-->" + JSON.stringify(this._data));
+          this._data = Array.from(data);
+          // this.subscribeToData();
+          this.isDataLoaded = true;
+        },
+        function(error) {
+          console.log(error);
+        }
+      );
+  }
 
-		this.postsSubscription = this.restApi
-			.get(aws_url.GET_CURRENT_QUESTION_URL)
-			.subscribe(
-				data => {
-					this._data = data;
-					console.log("this._data-->" + JSON.stringify(this._data));
-					this._data = Array.from(data);
-					// this.subscribeToData();
-					this.isDataLoaded = true;
-				},
-				function (error) {
-					console.log(error);
-				}
-			);
-	}
+  back() {
+    this._router.navigateByUrl("/index");
+  }
 
-	back() {
-		this._router.navigateByUrl("/index");
-	}
+  doLogout() {
+    this.auth.logOut();
+  }
 
-	doLogout() {
-		this.auth.logOut();
-	}
+  next(question) {
+    if (this.nextQuestionText == "Lock Question!") {
+      //	lock question
 
-	next(question) {
+      this.restApi.put(aws_url.LOCK_QUESTION_URL, question).subscribe(
+        data => {
+          this.nextQuestionText = "Next Question!";
+        },
+        error => {}
+      );
+    } else {
+      console.log("submitted question id: " + question["question_id"]);
 
-		if (this.nextQuestionText == "Lock Question!") {
-			//	lock question
+      this.postsSubscription = this.restApi
+        .put(aws_url.GET_NEXT_QUESTION_URL, question)
+        .subscribe(
+          data => {
+            console.log("Anuj : " + data);
 
-			this.restApi.put(aws_url.LOCK_QUESTION_URL, question).subscribe(
-				data => {
-					this.nextQuestionText = "Next Question!";
-				},
-				error => {
+            if (data == "QUIZ OVER") {
+              // this._data = null;
+              // this.isDataLoaded = false;
+              this._router.navigateByUrl("/quiz-over");
+            } else {
+              this._data = data;
+              this.isDataLoaded = true;
+              this.isCollapsed = false;
+              this.nextQuestionText = "Lock Question!";
+            }
+          },
+          function(error) {
+            console.log(error);
+          }
+        );
+    }
+  }
 
-				}
-			);
-		}
-		else {
-			console.log("submitted question id: " + question["question_id"]);
+  ngOnDestroy() {
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.remove("landing-page");
+    var navbar = document.getElementsByTagName("nav")[0];
+    navbar.classList.remove("navbar-transparent");
 
-			this.postsSubscription = this.restApi
-				.put(aws_url.GET_NEXT_QUESTION_URL, question)
-				.subscribe(
-					data => {
-						console.log("Anuj : " + data);
-
-						if (data == "QUIZ OVER") {
-							// this._data = null;
-							// this.isDataLoaded = false;
-							this._router.navigateByUrl('/quiz-over');
-						} else {
-							this._data = data;
-							this.isDataLoaded = true;
-							this.isCollapsed = false;
-							this.nextQuestionText = "Lock Question!";
-						}
-					},
-					function (error) {
-						console.log(error);
-					}
-				);
-		}
-	}
-
-	ngOnDestroy() {
-		var body = document.getElementsByTagName("body")[0];
-		body.classList.remove("landing-page");
-		var navbar = document.getElementsByTagName("nav")[0];
-		navbar.classList.remove("navbar-transparent");
-
-		//  this.timerSubscription.unsubscribe();
-		//  this.postsSubscription.unsubscribe();
-	}
+    //  this.timerSubscription.unsubscribe();
+    //  this.postsSubscription.unsubscribe();
+  }
 }

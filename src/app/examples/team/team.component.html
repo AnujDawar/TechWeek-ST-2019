@@ -52,7 +52,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of collection | paginate: { itemsPerPage: 3, currentPage: p }; let i = index">
+                  <tr *ngFor="let item of collection | paginate: { itemsPerPage: 4, currentPage: p }; let i = index">
                     <th class="text-center">{{item.team_id}}</th>
                     <th>{{item.team_name}}</th>
                     <th>{{item.score}}</th>

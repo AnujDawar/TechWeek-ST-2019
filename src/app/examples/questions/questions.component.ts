@@ -32,7 +32,7 @@ export class QuestionsComponent implements OnInit {
 	submitQuestionText: string = "ADD QUESTION";
 	currentQuestion: Question;
 	public questionInputBox: string;
-	questionListText: string = "Question List is Empty";
+	questionListText: string = "Question List is Loading";
 	asset_path: string;
 	asset_name: string;
 	mediaType: string;
