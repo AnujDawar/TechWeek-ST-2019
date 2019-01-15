@@ -77,7 +77,7 @@
                             <input *ngIf='auth.isLoggedIn() && !(globalservice.isAUser() || globalservice.isSUser())'
                                 type="submit" class="btn btn-primary btn-round btn-lg " value="Submit Answer!" />
                             &nbsp;&nbsp;
-                            <button (click)="next(_data[0])" class="btn btn-primary btn-round btn-lg ">Next Question!</button>
+                            <button (click)="next(_data[0])" class="btn btn-primary btn-round btn-lg ">{{ nextQuestionText }}</button>
                             &nbsp;&nbsp;
                             <button class="btn btn-primary btn-round btn-lg " (click)="back()">Back</button>
 

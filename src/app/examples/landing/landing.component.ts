@@ -24,6 +24,7 @@ export class LandingComponent implements OnInit {
 	data: Date = new Date();
 	focus;
 	focus1;
+	nextQuestionText: string = "Lock Question!";
 
 	bAuthenticated = false;
 
@@ -96,28 +97,44 @@ export class LandingComponent implements OnInit {
 	}
 
 	next(question) {
-		console.log("submitted question id: " + question["question_id"]);
 
-		this.postsSubscription = this.restApi
-			.put(aws_url.GET_NEXT_QUESTION_URL, question)
-			.subscribe(
+		if (this.nextQuestionText == "Lock Question!") {
+			//	lock question
+
+			this.restApi.put(aws_url.LOCK_QUESTION_URL, question).subscribe(
 				data => {
-					console.log("Anuj : " + data);
-
-					if (data == "QUIZ OVER") {
-						// this._data = null;
-						// this.isDataLoaded = false;
-						this._router.navigateByUrl('/quiz-over');
-					} else {
-						this._data = data;
-						this.isDataLoaded = true;
-						this.isCollapsed = false;
-					}
+					this.nextQuestionText = "Next Question!";
 				},
-				function (error) {
-					console.log(error);
+				error => {
+
 				}
 			);
+		}
+		else {
+			console.log("submitted question id: " + question["question_id"]);
+
+			this.postsSubscription = this.restApi
+				.put(aws_url.GET_NEXT_QUESTION_URL, question)
+				.subscribe(
+					data => {
+						console.log("Anuj : " + data);
+
+						if (data == "QUIZ OVER") {
+							// this._data = null;
+							// this.isDataLoaded = false;
+							this._router.navigateByUrl('/quiz-over');
+						} else {
+							this._data = data;
+							this.isDataLoaded = true;
+							this.isCollapsed = false;
+							this.nextQuestionText = "Lock Question!";
+						}
+					},
+					function (error) {
+						console.log(error);
+					}
+				);
+		}
 	}
 
 	ngOnDestroy() {
