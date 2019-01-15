@@ -16,6 +16,8 @@ import { QuestionsComponent } from './questions/questions.component';
 import { TeamComponent } from './team/team.component';
 import { ScoremanagementComponent } from './scoremanagement/scoremanagement.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ProjectorComponent } from './projector/projector.component';
+import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 
 @NgModule({
     imports: [
@@ -35,7 +37,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
         AudienceComponent,
         QuestionsComponent,
         TeamComponent,
-        ScoremanagementComponent
+        ScoremanagementComponent,
+        ProjectorComponent,
+        ScoreboardComponent
         
     ]
 })

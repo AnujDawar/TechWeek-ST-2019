@@ -5,6 +5,7 @@ import {GlobalService} from "../../shared/global.service";
 
 import { Router } from '@angular/router';
 import * as Rellax from 'rellax';
+import { FromEventPatternObservable } from 'rxjs/observable/FromEventPatternObservable';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit {
         this.auth.signIn(email, password).subscribe((data) => {
           console.log("data-->"+data);
           this.globalService.setlocalStorageItem("email",email);
-          if(this.globalService.isAUser()||this.globalService.isSUser())
+          if(this.globalService.isAUser()||this.globalService.isSUser() || this.globalService.isPUser())
           {
             this._router.navigateByUrl('/index');
           }
