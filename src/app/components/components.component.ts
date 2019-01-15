@@ -111,4 +111,13 @@ export class ComponentsComponent implements OnInit, OnDestroy {
   manageScores() {
     this._router.navigateByUrl("/score");
   }
+
+  goToQuestionProjector() {
+    this._router.navigateByUrl("/projector");
+  }
+
+ 
+  goToScoreBoard() {
+    this._router.navigateByUrl("/scoreboard");
+  }
 }

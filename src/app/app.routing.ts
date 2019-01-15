@@ -14,6 +14,8 @@ import { QuestionsComponent } from './examples/questions/questions.component';
 import { TeamComponent } from './examples/team/team.component';
 import { ScoremanagementComponent } from './examples/scoremanagement/scoremanagement.component';
 import { QuizOverComponent } from './quiz-over/quiz-over.component';
+import { ProjectorComponent } from './examples/projector/projector.component';
+import { ScoreboardComponent } from './examples/scoreboard/scoreboard.component';
 
 
 
@@ -29,7 +31,10 @@ const routes: Routes = [
     { path: 'questions', component: QuestionsComponent },
     { path: 'team', component: TeamComponent },
     { path: 'score', component: ScoremanagementComponent },
-    { path: 'quiz-over', component: QuizOverComponent }
+    { path: 'quiz-over', component: QuizOverComponent },
+    { path: 'projector', component: ProjectorComponent },
+    { path: 'scoreboard', component: ScoreboardComponent }
+    
 ];
 
 @NgModule({

@@ -47,9 +47,18 @@
               
             </div>
 
-            <div *ngIf='auth.isLoggedIn() && !globalservice.isAUser() && !globalservice.isSUser()'>                     
+            <div *ngIf='auth.isLoggedIn() && !globalservice.isAUser() && !globalservice.isSUser() && !globalservice.isPUser()'>                     
                     <button class="btn btn-primary btn-lg "(click)="goToQuiz()">Goto Quiz!</button>
             </div>
+
+            
+            <div *ngIf='auth.isLoggedIn() && globalservice.isPUser()'>                     
+                <button class="btn btn-primary btn-lg "(click)="goToQuestionProjector()">Goto Question Projector Screen!</button>
+                <button class="btn btn-primary btn-lg "(click)="goToScoreBoard()">Goto Score Projector Screen!</button>
+        </div>
+        
+            
+
         </div>
        
     </div>

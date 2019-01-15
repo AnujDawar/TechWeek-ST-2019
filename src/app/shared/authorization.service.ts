@@ -81,13 +81,11 @@ export class AuthorizationService {
       Pool : userPool
     };
     const cognitoUser = new CognitoUser(userData);
-    
-    return Observable.create(observer => {
 
+    return Observable.create(observer => {
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-         
-          console.log(result);
+        // console.log("Group Info :"+result.getAccessToken().payload['cognito:groups'];);
           observer.next(result);
           observer.complete();
         },
