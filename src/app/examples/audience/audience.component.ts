@@ -108,12 +108,20 @@ export class AudienceComponent implements OnInit {
 	}
 
 	refreshData(): any {
-		this.postsSubscription = this.restApi.get(aws_url.GET_CURRENT_QUESTION_URL).subscribe(
+		this.postsSubscription = this.restApi.get(aws_url.GET_CURRENT_QUESTION_URL + "?email=" + this.globalService.localStorageItem('email')).subscribe(
 			(data) => {
 				this._data = data;
-				console.log("this._data-->" + this._data);
+				// console.log(this._data);
+
+				if(this._data == "DUPLICATE")
+				{
+					this.staticAlertClosed = false;
+					this.submitButtonAlertMessage = "Your Response is recorded successfully";
+				}
 
 				this._data = Array.from(data);
+
+				console.log(this._data);
 
 				if(this._data[0])
 				if (this._data[0].question_id)

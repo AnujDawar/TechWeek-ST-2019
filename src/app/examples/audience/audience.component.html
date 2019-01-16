@@ -53,7 +53,7 @@
                                 </label>
                             </div>
 
-                            <ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">
+                            <ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true" [dismissible]="false">
                                 {{ submitButtonAlertMessage }}</ngb-alert>
 
                             <hr />
@@ -69,7 +69,7 @@
                             </div>
                         </form>
 
-                        <h4>Pay Attention. It's Rapid Fire ;)</h4>
+                        <h4 *ngIf="_data[0].round == 'Rapid-fire'">Pay Attention. It's Rapid Fire ;)</h4>
 
                     </div>
                 </div>
