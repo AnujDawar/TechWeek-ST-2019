@@ -106,7 +106,7 @@ export class ResultsComponent implements OnInit {
 	}
 
 	subscribeToData() {
-		this.timerSubscription = Observable.timer(10000).subscribe(() =>
+		this.timerSubscription = Observable.timer(1000).subscribe(() =>
 			this.getTeam()
 		);
 	}
