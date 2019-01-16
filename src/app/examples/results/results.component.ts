@@ -54,7 +54,7 @@ export class ResultsComponent implements OnInit {
 			  stacked: true,
 			  ticks: {
 				fontColor: 'white',  // y axes numbers color (can be hexadecimal too)
-				min: 0,
+				// min: 0,
 				beginAtZero: true,
 	  
 			  },
