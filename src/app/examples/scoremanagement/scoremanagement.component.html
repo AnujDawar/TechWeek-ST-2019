@@ -27,6 +27,7 @@
                                                         </div>
                                                         <input type="number" #score name="score" style="width: 5%"
                                                             ngModel class="form-control" placeholder="Enter Score..."
+                                                            min="0" pattern="d*"
                                                             style="color: white;" (focus)="focus=true" (blur)="focus=false">
 
                                                         <button type="button" rel="tooltip" (click)="addScore(item, score.value)"
