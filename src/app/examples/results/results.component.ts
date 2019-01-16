@@ -27,6 +27,7 @@ export class ResultsComponent implements OnInit {
 	private timerSubscription: Subscription;
 	private postsSubscription: Subscription;
 	isDataLoaded;
+	data: Date = new Date();
 
 	constructor(
 		public auth: AuthorizationService,
