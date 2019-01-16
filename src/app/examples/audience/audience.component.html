@@ -3,7 +3,7 @@
         <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
         <div class="container">
 
-            <div *ngIf="_data.length > 0" class="col-md-4 content-center">
+            <div *ngIf="_data && _data.length > 0" class="col-md-4 content-center">
                 <div class="card  card-plain">
                     <div class="card-body">
                         <form *ngIf="_data[0].round != 'Rapid-fire'" (ngSubmit)="submit(regform)" #regform="ngForm">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="_data.length <= 0" class="col-md-4 content-center">
+            <div *ngIf="!_data || _data.length == 0" class="col-md-4 content-center">
                 <h1 class="h2-seo">
                     Welcome to Tech Week 2019.</h1>
                 <h3 *ngIf="auth.isLoggedIn()">Please wait,Tech Quiz to start!....You will see magic soon...!!!</h3>
