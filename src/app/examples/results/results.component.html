@@ -1,0 +1,50 @@
+<!-- *ngIf="auth.isLoggedIn() && globalService.isPUser() && isDataLoaded" -->
+
+<div class="wrapper" >
+  <div class="page-header clear-filter" filter-color="orange">
+      <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
+      <div class="container">
+
+          <div class="col-md-4 content-center">
+              <div class="card  card-plain">
+                  <div class="card-body">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+                    <div style="display: block">
+                      <canvas baseChart
+                              [datasets]="barChartData"
+                              [labels]="barChartLabels"
+                              [options]="barChartOptions"
+                              [legend]="barChartLegend"
+                              [chartType]="barChartType"
+                              (chartHover)="chartHovered($event)"
+
+                             
+                              >
+                            </canvas>
+                    </div>
+                    <button (click)="randomize()">Update</button>
+                  </div>
+              </div>
+          </div>
+
+
+      </div>
+  </div>
+
+  <footer class="footer" data-background-color="orange">
+      <div class="container">
+          <div class="copyright">
+              &copy;
+              {{data | date: 'yyyy'}} TechConnect, Designed and developed by TechConnect Team.
+
+          </div>
+      </div>
+  </footer>
+</div>

@@ -16,6 +16,7 @@ import { ScoremanagementComponent } from './examples/scoremanagement/scoremanage
 import { QuizOverComponent } from './quiz-over/quiz-over.component';
 import { ProjectorComponent } from './examples/projector/projector.component';
 import { ScoreboardComponent } from './examples/scoreboard/scoreboard.component';
+import { ResultsComponent } from './examples/results/results.component';
 
 
 
@@ -33,7 +34,8 @@ const routes: Routes = [
     { path: 'score', component: ScoremanagementComponent },
     { path: 'quiz-over', component: QuizOverComponent },
     { path: 'projector', component: ProjectorComponent },
-    { path: 'scoreboard', component: ScoreboardComponent }
+    { path: 'scoreboard', component: ScoreboardComponent },
+    { path: 'result', component: ResultsComponent }
     
 ];
 

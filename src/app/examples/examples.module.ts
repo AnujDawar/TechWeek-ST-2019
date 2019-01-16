@@ -18,6 +18,8 @@ import { ScoremanagementComponent } from './scoremanagement/scoremanagement.comp
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ProjectorComponent } from './projector/projector.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { ResultsComponent } from './results/results.component';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 @NgModule({
     imports: [
@@ -26,7 +28,8 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component';
         NgbModule,
         NouisliderModule,
         JWBootstrapSwitchModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        ChartsModule
     ],
     declarations: [
         LandingComponent,
@@ -39,7 +42,8 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component';
         TeamComponent,
         ScoremanagementComponent,
         ProjectorComponent,
-        ScoreboardComponent
+        ScoreboardComponent,
+        ResultsComponent
         
     ]
 })

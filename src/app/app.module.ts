@@ -16,6 +16,7 @@ import {HttpModule} from "@angular/http";
 import {HttpClientModule} from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { QuizOverComponent } from './quiz-over/quiz-over.component'; // <-- import the module
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { QuizOverComponent } from './quiz-over/quiz-over.component'; // <-- impo
         ComponentsModule,
         ExamplesModule,
         HttpClientModule,
-        HttpModule
+        HttpModule,
+        ChartsModule
         
     ],
     providers: [AuthorizationService,RestApiservice,GlobalService],
