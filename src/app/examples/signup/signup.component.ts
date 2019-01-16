@@ -42,7 +42,7 @@ register(form: NgForm) {
   const email = form.value.email;
   const password = form.value.password;
   const name = form.value.name;
-  const mobile = form.value.mobile;
+  const mobile = '9999999999';//form.value.mobile;
   this.globalService.setlocalStorageItem("email",email);
   console.log("form.value.email-->"+form.value.email);
 
@@ -104,7 +104,6 @@ onSubmit(form: NgForm) {
 
 resendCode()
 {
-
   this.auth.resendCode().subscribe((data) => {
    console.log("Data-->"+data);
    this.error="";
@@ -123,13 +122,15 @@ ngOnDestroy(){
   navbar.classList.remove('navbar-transparent');
 }
 
+
+//form.controls["mobile"].value != null &&
+//form.controls["mobile"].value.trim() != "" &&
+   
 isFormValid(form: NgForm)
 	{
 		if(form.controls["name"].value != null &&
 			form.controls["name"].value.trim() != "" &&
-			form.controls["mobile"].value != null &&
-      form.controls["mobile"].value.trim() != "" &&
-      form.controls["email"].value != null &&
+		   form.controls["email"].value != null &&
       form.controls["email"].value.trim() != ""&&
       form.controls["password"].value != null  &&
       form.controls["password"].value != ""
