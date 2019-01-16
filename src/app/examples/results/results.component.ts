@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { aws_url } from "app/shared/urls";
 import { AuthorizationService } from "../../shared/authorization.service";
 import { GlobalService } from "../../shared/global.service";
@@ -15,6 +15,7 @@ import { Observable } from "rxjs/Rx";
 import { Subscription } from "rxjs/Subscription";
 import { Subject } from "rxjs";
 import { debounceTime } from "rxjs/operators";
+import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 
 @Component({
 	selector: "app-results",
@@ -22,6 +23,9 @@ import { debounceTime } from "rxjs/operators";
 	styleUrls: ["./results.component.scss"]
 })
 export class ResultsComponent implements OnInit {
+	
+	@ViewChild(BaseChartDirective) chart: BaseChartDirective;
+	
 	collection;
 	error = "";
 	private timerSubscription: Subscription;
@@ -144,7 +148,9 @@ export class ResultsComponent implements OnInit {
 		this.barChartData = cloneData;
 
 		this.barChartLabels = newChartLabels;
-
+		
+		this.chart.chart.config.data.labels = newChartLabels;
+		
 		console.log(this.barChartData);
 		console.log(this.barChartLabels);
 	}
