@@ -1,11 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthorizationService} from "../../shared/authorization.service";
+import { Component, OnInit, ViewChildren, ElementRef, ViewChild } from '@angular/core';
+import { NgForm } from "@angular/forms";
+import { AuthorizationService } from "../../shared/authorization.service";
+import { GlobalService } from "../../shared/global.service";
+
 import { Router } from '@angular/router';
 import * as Rellax from 'rellax';
-import {RestApiservice} from "../../shared/rest-api.service";
-import {GlobalService} from "../../shared/global.service";
-import { NgForm } from "@angular/forms";
+import { Http, Headers } from "@angular/http";
+import { RestApiservice } from "../../shared/rest-api.service";
+import { shallowEqualArrays } from '@angular/router/src/utils/collection';
+import 'rxjs/add/observable/interval';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Rx';
+import { Subscription } from "rxjs/Subscription";
 import { aws_url } from 'app/shared/urls';
+
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-scoreboard',
@@ -13,7 +24,8 @@ import { aws_url } from 'app/shared/urls';
   styleUrls: ['./scoreboard.component.scss']
 })
 export class ScoreboardComponent implements OnInit {
-
+	private timerSubscription: Subscription;
+	private postsSubscription: Subscription;
   
   data : Date = new Date();
    constructor(public auth: AuthorizationService,public _router: Router,public restApi: RestApiservice, public globalservice:GlobalService) { }
@@ -34,32 +46,10 @@ export class ScoreboardComponent implements OnInit {
     this.getTeam() ;
   }
 
-  // createTeam(teamForm: NgForm) 
-	// {
-	// 	if(!this.isFormValid(teamForm))
-	// 		return;
-  //   var teamName = teamForm.value.team_name;
-  //   var isActive = teamForm.value.is_active;
-
-  //   console.log("isActive-->"+isActive);
-
-  //   const jsonData = {
-  //   "team_name" : teamName,
-  //    "is_active" : 1
-  //   };
-  //   this.restApi.post(aws_url.CREATE_TEAM_URL,jsonData).subscribe(
-  //     (data) => {        
-  //      console.log("Data"+data);
-  //      teamForm.reset();
-  //      this.getTeam() ;
-  //     },
-  //     (err) => {
-  //       console.log(err);
-  //       this.error = "Not able to create team. Please try again.";
-  //     }
-  //   );
-  // }
-  
+  subscribeToData() {
+		this.timerSubscription = Observable.timer(1000)
+			.subscribe(() => this.getTeam());
+	}
 
   getTeam() 
 	{
@@ -68,6 +58,7 @@ export class ScoreboardComponent implements OnInit {
         this.collection=data;    
        console.log("Data"+data);
        this.isDataLoaded=true;
+       this.subscribeToData();
       },
       (err) => {
         console.log(err);
@@ -77,47 +68,16 @@ export class ScoreboardComponent implements OnInit {
 	}
 
 
-  // isFormValid(form: NgForm)
-	// {
-	// 	if(form.controls["team_name"].value != null &&
-	// 		form.controls["team_name"].value.trim() != "" )
-	// 		{
-	// 			return true;
-	// 		}
-
-	// 		else
-	// 		{
-	// 		 this.error= "Please enter all the required fields";
-
-	// 			return false;
-	// 		}
-	// }
-
-
-
-  // removeTeam(id) 
-	// {
-  //   console.log("id remove"+id)
-  //   this.restApi.delete(aws_url.DELETE_TEAM_URL +"?team_id="+id).subscribe(
-  //     (data) => { 
-         
-  //      console.log("Data"+data);
-  //      this.isDataLoaded=true;
-  //      this.getTeam();
-  //     },
-  //     (err) => {
-  //       console.log(err);
-  //       this.error = "Not able to find team. Please try again.";
-  //     }
-  //   );
-	// }
-  
 
   back()
   {
   this._router.navigateByUrl('/index');
   }
-
+  ngOnDestroy() {
+	
+		this.timerSubscription.unsubscribe();
+		this.postsSubscription.unsubscribe();
+	}
 
 
 }
