@@ -88,4 +88,32 @@ export class NavbarComponent implements OnInit {
             }
         );
     }
+
+    
+  manageScores() {
+    this._router.navigateByUrl("/score");
+  }
+
+  
+  manageTeam() {
+    this._router.navigateByUrl("/team");
+  }
+
+//   goToQuestionProjector() {
+//     this._router.navigateByUrl("/projector");
+//   }
+
+ 
+//   goToScoreBoard() {
+//     this._router.navigateByUrl("/scoreboard");
+//   }
+
+manageQuestions() {
+    this._router.navigateByUrl("/questions");
+  }
+  
+  teamResults()
+  {
+    this._router.navigateByUrl("/result");
+  }
 }

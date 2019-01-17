@@ -44,9 +44,7 @@
 
             <div *ngIf='auth.isLoggedIn() && (globalservice.isSUser() || globalservice.isAUser())'>  
                     <button class="btn btn-primary btn-lg"  (click)="manageScores()">Manage Scores</button>  
-                    <button class="btn btn-primary btn-lg"  (click)="audienceResults()">Team Results</button>  
-                    
-              
+                    <button class="btn btn-primary btn-lg"  (click)="goToScoreBoard()">Audience Results</button>  
             </div>
 
             <div *ngIf='auth.isLoggedIn() && !globalservice.isAUser() && !globalservice.isSUser() && !globalservice.isPUser()'>                     
@@ -56,7 +54,7 @@
             
             <div *ngIf='auth.isLoggedIn() && globalservice.isPUser()'>                     
                 <button class="btn btn-primary btn-lg "(click)="goToQuestionProjector()">Question Screen!</button>
-                <button class="btn btn-primary btn-lg "(click)="goToScoreBoard()">Score Screen!</button>
+                <button class="btn btn-primary btn-lg "(click)="teamResults()()">Score Screen!</button>
         </div>
         
             

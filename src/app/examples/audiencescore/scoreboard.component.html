@@ -1,0 +1,59 @@
+<div class="wrapper">
+  <div class="page-header clear-filter" filter-color="orange">
+    <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
+    <div class="container">
+      <div class="col-md-4 content-center" *ngIf="auth.isLoggedIn() &&  isDataLoaded">
+        <div class="card card-login card-plain">
+          <div class="header header-primary text-center">
+
+            <div class="header text-center">
+              <h6 class="title title-up">Audience Score Board</h6>
+            </div>
+          </div>
+
+
+          <div class="card-body">
+            
+
+
+
+            <!-- <table class="table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th (click)="sort('name')">Name
+                          <span class="glyphicon sort-icon" *ngIf="key =='name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th (click)="sort('genre')">Genre
+                          <span class="glyphicon sort-icon" *ngIf="key =='genre'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let game of collection | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+                        <td>{{i}}</td>
+                        <td>{{game.team_name}}</td>
+                        <td>{{game.team_name}}</td>
+                      </tr>
+                    </tbody>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </table> -->
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer" data-background-color="orange">
+      <div class="container">
+        <div class="copyright">
+          &copy;
+          {{data | date: 'yyyy'}} TechConnect, Designed and developed by TechConnect Team.
+
+        </div>
+      </div>
+    </footer>
+
+  </div>
