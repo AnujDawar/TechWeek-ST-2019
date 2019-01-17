@@ -47,38 +47,38 @@ export class ProjectorComponent implements OnInit {
 
 	constructor(public auth: AuthorizationService, public _router: Router, public restApi: RestApiservice, public globalService: GlobalService) { }
 
-	submit(form: NgForm) {
-		const choice_id = form.value.choice;
-		const question = this._data[0].question;
-		const question_id = this._data[0].question_id;
-		const choice_str_val = this.choice_decr;
+	// submit(form: NgForm) {
+	// 	const choice_id = form.value.choice;
+	// 	const question = this._data[0].question;
+	// 	const question_id = this._data[0].question_id;
+	// 	const choice_str_val = this.choice_decr;
 
-		console.log("Choice -->" + choice_id);
-		console.log("choice_val -->" + this.choice_decr);
-		console.log("question_id -->" + question_id);
+	// 	console.log("Choice -->" + choice_id);
+	// 	console.log("choice_val -->" + this.choice_decr);
+	// 	console.log("question_id -->" + question_id);
 
-		const jsonData = {
-			"user_email": this.globalService.localStorageItem('email'),
-			"question_id": question_id,
-			"answer_time": new Date(),
-			"user_response": choice_str_val,
-		};
+	// 	const jsonData = {
+	// 		"user_email": this.globalService.localStorageItem('email'),
+	// 		"question_id": question_id,
+	// 		"answer_time": new Date(),
+	// 		"user_response": choice_str_val,
+	// 	};
 
-		this.restApi.post(aws_url.STORE_USER_RESPONSE_URL, jsonData).subscribe(
-			(data) => {
-				this.submitButtonAlertMessage = "Your Response is recorded successfully";
-				this.staticAlertClosed = false;
-				form.reset();
-				console.log("Data" + data);
-			},
-			(err) => {
-				this.submitButtonAlertMessage = "Please try again."
-				this.staticAlertClosed = false;
-				console.log(err);
-				this.error = "Not able to Store user response. Please try again.";
-			}
-		);
-	}
+	// 	this.restApi.post(aws_url.STORE_USER_RESPONSE_URL, jsonData).subscribe(
+	// 		(data) => {
+	// 			this.submitButtonAlertMessage = "Your Response is recorded successfully";
+	// 			this.staticAlertClosed = false;
+	// 			form.reset();
+	// 			console.log("Data" + data);
+	// 		},
+	// 		(err) => {
+	// 			this.submitButtonAlertMessage = "Please try again."
+	// 			this.staticAlertClosed = false;
+	// 			console.log(err);
+	// 			this.error = "Not able to Store user response. Please try again.";
+	// 		}
+	// 	);
+	// }
 
 	setChoiceDescr(choice_decr) {
 		console.log("choice_decr-->" + choice_decr);
@@ -110,29 +110,43 @@ export class ProjectorComponent implements OnInit {
 		this.postsSubscription = this.restApi.get(aws_url.GET_CURRENT_QUESTION_URL).subscribe(
 			(data) => {
 				this._data = data;
-				console.log("this._data-->" + this._data);
-
-				this._data = Array.from(data);
-
-				if(this.previousQuestionId != this._data[0].question_id)
-				{
-					this.previousQuestionId = this._data[0].question_id;
-					this.staticAlertClosed = true;
-					// this.audienceForm.reset();
-					// this.regForm.reset();
+				// console.log(this._data);
+	  
+				// if (this._data == "DUPLICATE") {
+				//   this.staticAlertClosed = false;
+				//   this.submitButtonAlertMessage =
+				// 	"Your Response is recorded successfully";
+				// }
+	  
+			  //   this.isDataLoaded = true;
+	  
+				if (this._data) {
+				  this._data = Array.from(data);
+	  
+				  if (this._data[0]) {
+					if (this._data[0].question_id)
+					  if (this.previousQuestionId != this._data[0].question_id) {
+						this.previousQuestionId = this._data[0].question_id;
+						this.staticAlertClosed = true;
+					  }
+				  }
+				  
+				  if (this._data.length > 0) {
+					  this.current = this._data[0].question_id;
+					  this.previous = this._data[0].previous;
+					}
 				}
-
+				
+				console.log(this._data);
+	  
 				this.subscribeToData();
 				this.isDataLoaded = true;
-
-				if (this._data.length > 0) {
-					this.current = this._data[0].question_id;
-					this.previous = this._data[0].previous;
-				}
-			},
-			function (error) {
+	  
+			  },
+			  function(error) {
 				console.log(error);
-			}
+			  }
+		
 		);
 	}
 

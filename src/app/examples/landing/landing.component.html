@@ -50,7 +50,7 @@
                             </label>
                         </div>
 
-                        <div class="form-check form-check-radio input-group form-group-no-border">
+                        <div *ngIf="_data[0].choice_2 && _data[0].choice_2 != ' '" class="form-check form-check-radio input-group form-group-no-border">
                             <label class="form-check-label">
                                 <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice_2"
                                     [value]="_data[0].choice_2" [(ngModel)]="_data[0].correct_choice" disabled>
@@ -59,7 +59,7 @@
                             </label>
                         </div>
 
-                        <div class="form-check form-check-radio input-group form-group-no-border">
+                        <div *ngIf="_data[0].choice_3 && _data[0].choice_3 != ' '" class="form-check form-check-radio input-group form-group-no-border">
                             <label class="form-check-label">
                                 <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice_3"
                                     [value]="_data[0].choice_3" [(ngModel)]="_data[0].correct_choice" disabled>
@@ -67,7 +67,7 @@
                                 {{_data[0].choice_3}}
                             </label>
                         </div>
-                        <div class="form-check form-check-radio input-group form-group-no-border">
+                        <div *ngIf="_data[0].choice_4 && _data[0].choice_4 != ' '" class="form-check form-check-radio input-group form-group-no-border">
                             <label class="form-check-label">
                                 <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice_4"
                                     [value]="_data[0].choice_4" [(ngModel)]="_data[0].correct_choice" disabled>
