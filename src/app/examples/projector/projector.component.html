@@ -32,7 +32,7 @@
                             <img src="{{ _data[0].asset_path }}" alt="{{ _data[0].asset_name }}" class="img-responsive"
                                 style="align-content: center; text-align: center; max-height: 300px">
                         </div>
-
+                        <div  *ngIf="_data[0].round != 'Rapid-fire'">
                         <div class="form-check form-check-radio input-group form-group-no-border">
                             <label class="form-check-label">
                                 <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice_1"
@@ -67,7 +67,7 @@
                                 {{_data[0].choice_4}}
                             </label>
                         </div>
-
+                    </div>
                         <div class="input-group form-group-no-border">
                             <!-- <input *ngIf='auth.isLoggedIn() && !(globalservice.isAUser() || globalservice.isSUser())'
                               type="submit" class="btn btn-primary btn-round btn-lg " value="Submit Answer!" /> -->

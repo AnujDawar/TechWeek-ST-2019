@@ -17,7 +17,7 @@ import { TeamComponent } from './team/team.component';
 import { ScoremanagementComponent } from './scoremanagement/scoremanagement.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ProjectorComponent } from './projector/projector.component';
-import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { ScoreboardComponent } from './audiencescore/scoreboard.component';
 import { ResultsComponent } from './results/results.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 

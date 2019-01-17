@@ -121,7 +121,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
     this._router.navigateByUrl("/scoreboard");
   }
 
-  audienceResults()
+  teamResults()
   {
     this._router.navigateByUrl("/result");
   }

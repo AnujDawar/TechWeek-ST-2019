@@ -15,7 +15,7 @@ import { TeamComponent } from './examples/team/team.component';
 import { ScoremanagementComponent } from './examples/scoremanagement/scoremanagement.component';
 import { QuizOverComponent } from './quiz-over/quiz-over.component';
 import { ProjectorComponent } from './examples/projector/projector.component';
-import { ScoreboardComponent } from './examples/scoreboard/scoreboard.component';
+import { ScoreboardComponent } from './examples/audiencescore/scoreboard.component';
 import { ResultsComponent } from './examples/results/results.component';
 
 

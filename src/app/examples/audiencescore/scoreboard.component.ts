@@ -24,48 +24,24 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./scoreboard.component.scss']
 })
 export class ScoreboardComponent implements OnInit {
-	private timerSubscription: Subscription;
-	private postsSubscription: Subscription;
+
   
+  error ='';
+
+  isDataLoaded;
+
+  p: number = 1;
+  collection; 
   data : Date = new Date();
+
    constructor(public auth: AuthorizationService,public _router: Router,public restApi: RestApiservice, public globalservice:GlobalService) { }
     
-   error ='';
-
-   isDataLoaded;
-
-   p: number = 1;
-   collection; 
    
   ngOnInit() {
-   this.getTeam() ;
+    this.isDataLoaded=true;
+
   }
 
-  refresh()
-  {
-    this.getTeam() ;
-  }
-
-  subscribeToData() {
-		this.timerSubscription = Observable.timer(1000)
-			.subscribe(() => this.getTeam());
-	}
-
-  getTeam() 
-	{
-    this.restApi.get(aws_url.GET_TEAM_URL).subscribe(
-      (data) => {   
-        this.collection=data;    
-       console.log("Data"+data);
-       this.isDataLoaded=true;
-       this.subscribeToData();
-      },
-      (err) => {
-        console.log(err);
-        this.error = "Not able to find team. Please try again.";
-      }
-    );
-	}
 
 
 
@@ -74,9 +50,7 @@ export class ScoreboardComponent implements OnInit {
   this._router.navigateByUrl('/index');
   }
   ngOnDestroy() {
-	
-		this.timerSubscription.unsubscribe();
-		this.postsSubscription.unsubscribe();
+
 	}
 
 

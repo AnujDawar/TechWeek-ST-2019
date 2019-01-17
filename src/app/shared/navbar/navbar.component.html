@@ -61,19 +61,19 @@
                     </a>
                 </li>
                 <li class="nav-item"  *ngIf='globalService.isAUser()'>
-                    <a class="nav-link" (click)="manageQuestions()" href="#" routerLink="/questions">
+                    <a class="nav-link" (click)="manageQuestions()" >
                       <i class="now-ui-icons objects_diamond"></i>
                       <p>Manage Question</p>
                     </a>
                 </li>
                 <li class="nav-item"  *ngIf='globalService.isAUser() || globalService.isSUser()'>
-                    <a class="nav-link" (click)="manageTeam()" href="#" routerLink="/team">
+                    <a class="nav-link" (click)="manageTeam()"  >
                       <i class="now-ui-icons objects_diamond"></i>
                       <p>Manage Teams</p>
                     </a>
                 </li>
                 <li class="nav-item"  *ngIf='globalService.isAUser() || globalService.isSUser()'>
-                    <a class="nav-link" (click)="manageScores()" href="#" routerLink="/score">
+                    <a class="nav-link" (click)="manageScores()" >
                       <i class="now-ui-icons objects_diamond"></i>
                       <p>Manage Scores</p>
                     </a>
@@ -86,7 +86,7 @@
                 </li> -->
 
                 <li class="nav-item" *ngIf="auth.isLoggedIn()">
-                    <a class="nav-link" (click)="doLogout()" href="#" routerLink="/login">
+                    <a class="nav-link" (click)="doLogout()"  routerLink="/login">
                       <i class="now-ui-icons objects_key-25"></i>
                       <p>Logout</p>
                     </a>

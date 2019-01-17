@@ -3,13 +3,13 @@ import { AuthorizationService } from "./authorization.service";
 
 @Injectable()
 export class GlobalService {
-    auser1 = "67e253cd-f202-4c5a-8207-9bf3fdc3a78a";
-    auser2 = "d61d7fd6-ccd5-4151-9145-73b9861a6494";
+    auser1 = "67e253cd-f202-4c5a-8207-9bf3fdc3a78a";//Bipin
+    auser2 = "d61d7fd6-ccd5-4151-9145-73b9861a6494"; //226c4d3e-1dce-4b6a-91e1-9f767fec961f
     auser3 = "d27b1e25-dcc5-419e-99ae-0f9d744faf50"; // anuj
-    suser1 = "982c8382-0294-4063-949e-6a2d60503471";
-    suser2 = "182d8a4b-a9c0-4765-b704-4167173d39fe";
-    suser3 = "";
-    puser1 = "eda1a676-dd74-4a7c-b1f2-8eca49b0212d";
+    suser1 = "7dd0ae25-bbb9-46a5-be50-f36f8035f072"; //score1
+    suser2 = "9c14f379-0cde-4866-ba25-da7eb7baa0cc"; //score2
+    suser3 = "de33eb5e-ee3d-4b08-acf0-cab445b3682b";  //score3
+    puser1 = "eda1a676-dd74-4a7c-b1f2-8eca49b0212d";//projector
 
     constructor(private auth: AuthorizationService) {
         localStorage.setItem('auser1', this.auser1);
