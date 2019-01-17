@@ -14,7 +14,9 @@
 
                             <br>
                             <br>
-                            <h5 *ngIf="staticAlertClosed">Round: {{_data[0].round}} </h5>
+                            <div *ngIf="staticAlertClosed">
+                            <h5 >{{_data[0].round}} </h5>
+                           </div>
                             <br>
 
                             <h4>{{_data[0].question}} </h4>
