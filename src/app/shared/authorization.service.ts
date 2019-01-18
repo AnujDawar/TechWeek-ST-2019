@@ -134,5 +134,58 @@ export class AuthorizationService {
 
 
 
+    forgotPassword(username: string) {
+        let userData = {
+          Username : this.cognitoUser.username,
+            Pool: userPool
+        };
+
+        let cognitoUser = new CognitoUser(userData);
+
+
+        return Observable.create(observer => {
+
+          cognitoUser.forgotPassword({
+            onSuccess: function () {
+              observer.next(observer);
+              observer.complete();
+            },
+            onFailure: function (err) {
+              console.log(err);
+              observer.error(err);
+               
+            },
+            inputVerificationCode() {
+               
+            }
+        });
+
+        });
+
+       
+    }
+
+
+    confirmNewPassword(email: string, verificationCode: string, password: string) {
+      let userData = {
+        Username : this.cognitoUser.username,
+        Pool: userPool
+    };
+
+      let cognitoUser = new CognitoUser(userData);      
+        return Observable.create(observer => {
+          cognitoUser.confirmPassword(verificationCode, password, {
+            onSuccess: function () {
+              observer.next(observer);
+              observer.complete();
+            },
+            onFailure: function (err) {
+               console.log("Error while confirming new passsword");
+            }
+        });
+
+        });
+  }
+
 
 }

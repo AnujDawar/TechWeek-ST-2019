@@ -17,6 +17,7 @@ import { QuizOverComponent } from './quiz-over/quiz-over.component';
 import { ProjectorComponent } from './examples/projector/projector.component';
 import { ScoreboardComponent } from './examples/audiencescore/scoreboard.component';
 import { ResultsComponent } from './examples/results/results.component';
+import { ForgotComponent, ForgotStep2Component } from './examples/forgot/forgot.component';
 
 
 
@@ -35,7 +36,11 @@ const routes: Routes = [
     { path: 'quiz-over', component: QuizOverComponent },
     { path: 'projector', component: ProjectorComponent },
     { path: 'scoreboard', component: ScoreboardComponent },
-    { path: 'result', component: ResultsComponent }
+    { path: 'result', component: ResultsComponent },
+    { path: 'forgotpassword', component: ForgotComponent },
+    { path: 'forgotpasswordstep2', component: ForgotStep2Component }
+
+    
     
 ];
 
