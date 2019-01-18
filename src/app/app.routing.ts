@@ -17,6 +17,7 @@ import { QuizOverComponent } from './quiz-over/quiz-over.component';
 import { ProjectorComponent } from './examples/projector/projector.component';
 import { ScoreboardComponent } from './examples/audiencescore/scoreboard.component';
 import { ResultsComponent } from './examples/results/results.component';
+import { AudiencePollComponent } from './examples/audience-poll/audience-poll.component';
 
 
 
@@ -35,7 +36,8 @@ const routes: Routes = [
     { path: 'quiz-over', component: QuizOverComponent },
     { path: 'projector', component: ProjectorComponent },
     { path: 'scoreboard', component: ScoreboardComponent },
-    { path: 'result', component: ResultsComponent }
+    { path: 'result', component: ResultsComponent },
+    { path: 'audience-poll', component: AudiencePollComponent }
     
 ];
 

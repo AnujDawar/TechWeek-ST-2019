@@ -20,6 +20,7 @@ import { ProjectorComponent } from './projector/projector.component';
 import { ScoreboardComponent } from './audiencescore/scoreboard.component';
 import { ResultsComponent } from './results/results.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { AudiencePollComponent } from './audience-poll/audience-poll.component';
 
 @NgModule({
     imports: [
@@ -43,7 +44,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
         ScoremanagementComponent,
         ProjectorComponent,
         ScoreboardComponent,
-        ResultsComponent
+        ResultsComponent,
+        AudiencePollComponent
         
     ]
 })
