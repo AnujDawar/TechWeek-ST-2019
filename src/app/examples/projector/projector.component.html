@@ -1,39 +1,39 @@
 <div class="wrapper" *ngIf="auth.isLoggedIn() && isDataLoaded">
-        <div class="page-header clear-filter" filter-color="orange">
-            <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
-            <div class="container">
-    
-                <div *ngIf="_data && _data.length > 0" class="col-md-4 content-center">
-                    <div class="card  card-plain">
-                        <div class="card-body">
-                            <form *ngIf="_data[0].round != 'Rapid-fire'" (ngSubmit)="submit(regform)" #regform="ngForm">
-    
-                                <br>
-    
-                                <span style="margin-top: 10%; position:absolute"></span>
-    
-                                <br>
-                                <br>
-                                <h5>Round: {{_data[0].round}} </h5>
-                                <br>
-    
-                                <h4>{{_data[0].question}} </h4>
+    <div class="page-header clear-filter" filter-color="orange">
+        <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
+        <div class="container">
 
-                                
-                        <figure *ngIf="_data[0].media_type == 'audio'">
+            <div *ngIf="_data && _data.length > 0" class="col-md-4 content-center">
+                <div class="card  card-plain">
+                    <div class="card-body">
+                        <form *ngIf="_data[0].round != 'Rapid-fire'" (ngSubmit)="submit(regform)" #regform="ngForm">
+
+                            <br>
+
+                            <span style="margin-top: 10%; position:absolute"></span>
+
+                            <br>
+                            <br>
+                            <h5>Round: {{_data[0].round}} </h5>
+                            <br>
+
+                            <h4>{{_data[0].question}} </h4>
+
+
+                            <figure *ngIf="_data[0].media_type == 'audio'">
                                 <figcaption>Listen to the {{ _data[0].asset_name }} :</figcaption>
                                 <audio controls src="{{ _data[0].asset_path }}">
                                     Your browser does not support the
                                     <code>audio</code> element.
                                 </audio>
                             </figure>
-    
+
                             <div *ngIf="_data[0].media_type == 'image'" style=" text-align: center; vertical-align: middle;">
                                 <img src="{{ _data[0].asset_path }}" alt="{{ _data[0].asset_name }}" class="img-responsive"
                                     style="align-content: center; text-align: center; max-height: 300px">
                             </div>
-    
-                                <div *ngIf="staticAlertClosed" class="form-check form-check-radio input-group form-group-no-border">
+
+                            <!-- <div *ngIf="staticAlertClosed" class="form-check form-check-radio input-group form-group-no-border">
                                     <label class="form-check-label">
                                         <input class="form-check-input form-control" ngModel type="radio" name="choice" id="choice"
                                             [value]="_data[0].choice_1" (click)="setChoiceDescr(_data[0].choice_1)" checked>
@@ -66,46 +66,46 @@
                                         <span class="form-check-sign"></span>
                                         {{_data[0].choice_4}}
                                     </label>
-                                </div>
-    
-                                <!-- <ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true" [dismissible]="false">
+                                </div> -->
+
+                            <!-- <ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true" [dismissible]="false">
                                     {{ submitButtonAlertMessage }}</ngb-alert> -->
-    
-                                <!-- <hr /> -->
-    
-                                <div class="input-group form-group-no-border">
-                                    <!-- <input type="submit" class="btn btn-primary btn-round btn-lg " value="Submit Answer!"
+
+                            <!-- <hr /> -->
+
+                            <div class="input-group form-group-no-border">
+                                <!-- <input type="submit" class="btn btn-primary btn-round btn-lg " value="Submit Answer!"
                                         [disabled]="!staticAlertClosed" /> -->
-                                    &nbsp;&nbsp;
-                                    <button class="btn btn-primary btn-round btn-lg " (click)="back()" [disabled]="!staticAlertClosed">Back</button>
-                                </div>
-                                <div *ngIf="error">
-                                    {{error}}
-                                </div>
-                            </form>
-    
-                            <!-- <h4 *ngIf="_data[0].round == 'Rapid-fire'">Pay Attention. It's Rapid Fire ;)</h4> -->
-    
-                        </div>
+                                &nbsp;&nbsp;
+                                <button class="btn btn-primary btn-round btn-lg " (click)="back()" [disabled]="!staticAlertClosed">Back</button>
+                            </div>
+                            <div *ngIf="error">
+                                {{error}}
+                            </div>
+                        </form>
+
+                        <!-- <h4 *ngIf="_data[0].round == 'Rapid-fire'">Pay Attention. It's Rapid Fire ;)</h4> -->
+
                     </div>
                 </div>
-                <div *ngIf="!_data || _data.length == 0" class="col-md-4 content-center">
-                    <h1 class="h2-seo">
-                        Welcome to Tech Week 2019.</h1>
-                    <h3 *ngIf="auth.isLoggedIn()">Please wait,Tech Quiz to start!....You will see magic soon...!!!</h3>
-    
-                </div>
-    
-    
+            </div>
+            <div *ngIf="!_data || _data.length == 0" class="col-md-4 content-center">
+                <h1 class="h2-seo">
+                    Welcome to Tech Week 2019.</h1>
+                <h3 *ngIf="auth.isLoggedIn()">Please wait,Tech Quiz to start!....You will see magic soon...!!!</h3>
+
+            </div>
+
+
+        </div>
+    </div>
+    <footer class="footer" data-background-color="orange">
+        <div class="container">
+            <div class="copyright">
+                &copy;
+                {{data | date: 'yyyy'}} TechConnect, Designed and developed by TechConnect Team.
+
             </div>
         </div>
-        <footer class="footer" data-background-color="orange">
-            <div class="container">
-                <div class="copyright">
-                    &copy;
-                    {{data | date: 'yyyy'}} TechConnect, Designed and developed by TechConnect Team.
-    
-                </div>
-            </div>
-        </footer>
-    </div>
+    </footer>
+</div>

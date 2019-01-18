@@ -24,6 +24,7 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { ForgotStep2Component } from './forgot/forgot.component';
 
 
+import { AudiencePollComponent } from './audience-poll/audience-poll.component';
 
 @NgModule({
     imports: [
@@ -50,6 +51,7 @@ import { ForgotStep2Component } from './forgot/forgot.component';
         ResultsComponent,
         ForgotComponent,
         ForgotStep2Component
+        AudiencePollComponent
         
     ]
 })
