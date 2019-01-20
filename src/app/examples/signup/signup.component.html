@@ -21,7 +21,7 @@
                   <div class="input-group-prepend">
                       <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
                   </div>
-                    <input type="text" name="name" ngModel class="form-control" placeholder="Full Name..." (focus)="focus=true" (blur)="focus=false" >
+                    <input type="text" name="name" required ngModel class="form-control" placeholder="Full Name..." (focus)="focus=true" (blur)="focus=false" >
                 </div>
 
                 <!-- <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus2===true}">
@@ -35,13 +35,13 @@
                   <div class="input-group-prepend">
                       <span class="input-group-text"><i class="now-ui-icons ui-1_email-85"></i></span>
                   </div>
-                    <input type="text" name="email" ngModel placeholder="Email..." class="form-control" (focus)="focus2=true" (blur)="focus2=false"/>
+                    <input type="text" name="email" required ngModel placeholder="Email..." class="form-control" (focus)="focus2=true" (blur)="focus2=false"/>
                   </div>
                   <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus2===true}">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
                         </div>
-                          <input type="password" ngModel name="password" placeholder="Password..."  class="form-control" (focus)="focus2=true" (blur)="focus2=false"/>
+                          <input type="password" required ngModel name="password" placeholder="Password Min 6 Chars"  class="form-control" (focus)="focus2=true" (blur)="focus2=false"/>
                   </div>
                   <!-- If you want to add a checkbox to this form, uncomment this code -->
                   <!-- <div class="checkbox">
@@ -51,7 +51,9 @@
                        </label>
                  </div> -->
                  <div class="input-group form-group-no-border">
-                        <input type="submit" class="btn btn-primary btn-round btn-lg btn-block"  value="Get Started!" />
+                        
+                          <input type="submit" [disabled]="regform.invalid"  class="btn btn-primary btn-round btn-lg btn-block"  name="submitbutton" value="Get Started!" />
+                      
                   </div>
                   <div *ngIf="error">
                      {{error}}

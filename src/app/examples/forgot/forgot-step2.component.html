@@ -15,15 +15,25 @@
                 <form class="form"  (ngSubmit)="onSubmit(f)" #f="ngForm">
                    
                     <div class="content">
+
+                            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">  <i class="now-ui-icons objects_key-25"></i></span>
+                                    </div>
+                                      <input id="verificationCode" type="verificationCode" maxlength="50" ngModel class="form-control" name="verificationCode" placeholder="Verification Code.." >
+                                  </div>
+
                       <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
                         <div class="input-group-prepend">
                             <span class="input-group-text">  <i class="now-ui-icons ui-1_email-85"></i></span>
                         </div>
-                          <input type="text" ngModel class="form-control" name="email" placeholder="Email..." (focus)="focus=true" (blur)="focus=false" >
+                          <input type="password" ngModel class="form-control" name="password" placeholder="New Password.." >
                       </div>
+                   
                     </div>
                     <div class="footer text-center">
-                            <input type="submit" class="btn btn-primary btn-round btn-lg btn-block"  value="Get Started!" />
+                            <input type="submit" class="btn btn-primary btn-round btn-lg btn-block"  value="Reset Password!" />
+                            <input class="btn btn-primary btn-round btn-lg btn-block" (click)="back()"  value="Back!" />
                     </div>
                     <div *ngIf="error">
                         <strong>{{error}}</strong>

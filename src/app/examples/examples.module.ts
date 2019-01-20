@@ -50,7 +50,7 @@ import { AudiencePollComponent } from './audience-poll/audience-poll.component';
         ScoreboardComponent,
         ResultsComponent,
         ForgotComponent,
-        ForgotStep2Component
+        ForgotStep2Component,
         AudiencePollComponent
         
     ]

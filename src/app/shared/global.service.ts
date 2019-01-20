@@ -28,6 +28,10 @@ export class GlobalService {
         localStorage.setItem(id, value);
     }
 
+    public removelocalStorageItem(id: string) {
+        localStorage.removeItem(id);
+    }
+
 
     isAUser() {
         if (this.auth.isLoggedIn()) {

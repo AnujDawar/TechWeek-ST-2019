@@ -4,7 +4,7 @@ import {AuthorizationService} from "../../shared/authorization.service";
 import {GlobalService} from "../../shared/global.service";
 
 import { Router } from '@angular/router';
-import * as Rellax from 'rellax';
+
 
 @Component({
   selector: 'app-forgot',
@@ -42,49 +42,40 @@ export class ForgotComponent implements OnInit {
   onSubmit(form: NgForm) {
       const email = form.value.email.trim();
       const password = form.value.password;
-    if(!this.isFormValid(form))
+    if(this.isFormValid(form))
       {
-        return;
-      }
-
       console.log("form.value.email-->"+form.value.email);
-     
-      console.log("form.value.password-->"+form.value.password);
       this.auth.forgotPassword(email).subscribe((data) => {
         console.log("data-->"+data);
-        this.globalService.setlocalStorageItem("email",email);
-        if(this.globalService.isAUser()||this.globalService.isSUser() || this.globalService.isPUser())
-        {
-          this._router.navigateByUrl('/index');
-        }
-        else
-        {
-          this._router.navigateByUrl('/audience');
-        }
-
+        this.globalService.setlocalStorageItem("forgotemail",email);
+        this._router.navigateByUrl('forgotpasswordstep2');
         this.error="";
       }, (err)=> {
         form.value.email='';
         this.emailVerificationMessage = true;
-        this.error ="Invalid credentials. Please try again.";
+        this.error = err;
+        console.log(this.error);
       });   
+      
     }
-
+    }
 
     isFormValid(form: NgForm)
     {
-      if(form.controls["email"].value != null &&
-        form.controls["email"].value.trim() != "" &&  
-        form.controls["password"].value !== "")
-        {
-          return true;
-        }
-        else
-        {
-         this.error= "Please enter all the required fields";
-          return false;
-        }
+      if(form.controls["email"].value == null && form.controls["email"].value.trim() == "" )  
+      {
+        form.controls["email"].setValue("");
+        this.error= "Please enter email.";
+        return false;
+      }
+      return true;
+
     }
+
+    back()
+{
+  this._router.navigateByUrl('/login'); 
+}
 }
 
 @Component({
@@ -94,27 +85,51 @@ export class ForgotComponent implements OnInit {
 })
 export class ForgotStep2Component implements OnInit {
 
-  confirmCode: boolean = false;
+confirmCode: boolean = false;
 codeWasConfirmed: boolean = false;
 error: string = "";
 emailVerificationMessage: boolean = false;
 data : Date = new Date();
-focus;
-focus1;
-focus2;
+
 
   constructor(public auth: AuthorizationService,public _router: Router,public globalService:GlobalService) { }
 
+  
+  onSubmit(form: NgForm) {
+    
+    const email =  this.globalService.localStorageItem("forgotemail");
+    const  verificationCode= form.value.verificationCode;
+    const password = form.value.password;
+
+    this.auth.confirmNewPassword(email, verificationCode, password)
+    .subscribe((data) => {
+      console.log("data-->"+data);
+     
+      this._router.navigateByUrl('/index');
+      this.error="";
+    }, (err)=> {
+      form.value.email='';
+      this.emailVerificationMessage = true;
+      this.error = err;
+      console.log(this.error);
+    });   
+
+    this.globalService.removelocalStorageItem("forgotemail");
+}
+
+
   ngOnInit() {
-
-    var rellaxHeader = new Rellax('.rellax-header');
-
 
     var body = document.getElementsByTagName('body')[0];
     body.classList.add('login-page');
 
     var navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
+}
+
+back()
+{
+  this._router.navigateByUrl('/forgotpassword'); 
 }
 
 }

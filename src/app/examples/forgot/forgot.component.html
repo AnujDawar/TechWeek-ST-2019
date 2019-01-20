@@ -19,11 +19,12 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">  <i class="now-ui-icons ui-1_email-85"></i></span>
                         </div>
-                          <input type="text" ngModel class="form-control" name="email" placeholder="Email..." (focus)="focus=true" (blur)="focus=false" >
+                          <input type="text" ngModel required class="form-control" name="email" placeholder="Email..." (focus)="focus=true" (blur)="focus=false" >
                       </div>
                     </div>
                     <div class="footer text-center">
-                            <input type="submit" class="btn btn-primary btn-round btn-lg btn-block"  value="Get Started!" />
+                            <input type="submit" [disabled]="f.invalid" class="btn btn-primary btn-round btn-lg btn-block"  value="Reset Password!" />
+                            <input class="btn btn-primary btn-round btn-lg btn-block" (click)="back()"  value="Back!" />
                     </div>
                     <div *ngIf="error">
                         <strong>{{error}}</strong>

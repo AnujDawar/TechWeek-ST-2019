@@ -7,7 +7,7 @@ const userPool = new CognitoUserPool(poolData);
 
 @Injectable()
 export class AuthorizationService {
-  cognitoUser: any;
+    cognitoUser: any;
    email:any; 
   constructor() { }
 
@@ -36,11 +36,10 @@ export class AuthorizationService {
       userPool.signUp(email, password, attributeList, null, (err, result) => {
         if (err) {
           console.log("signUp error", err);
-          observer.error(err);
+          observer.error(err.message);
         }
 
         this.cognitoUser = result.user;
-      
         console.log("signUp success", result);
         observer.next(result);
         observer.complete();
@@ -52,7 +51,8 @@ export class AuthorizationService {
   confirmAuthCode(code) {
     const user = {
       Username : this.cognitoUser.username,
-      Pool : userPool
+      Pool : userPool,
+      GroupName: "audiencegroup"
     };
     return Observable.create(observer => {
       const cognitoUser = new CognitoUser(user);
@@ -134,14 +134,13 @@ export class AuthorizationService {
 
 
 
-    forgotPassword(username: string) {
+    forgotPassword(email: string) {
         let userData = {
-          Username : this.cognitoUser.username,
+            Username : email,//his.cognitoUser.username,
             Pool: userPool
         };
 
         let cognitoUser = new CognitoUser(userData);
-
 
         return Observable.create(observer => {
 
@@ -152,10 +151,7 @@ export class AuthorizationService {
             },
             onFailure: function (err) {
               console.log(err);
-              observer.error(err);
-               
-            },
-            inputVerificationCode() {
+              observer.error(err.message);
                
             }
         });
@@ -168,7 +164,7 @@ export class AuthorizationService {
 
     confirmNewPassword(email: string, verificationCode: string, password: string) {
       let userData = {
-        Username : this.cognitoUser.username,
+        Username : email,
         Pool: userPool
     };
 
@@ -180,6 +176,8 @@ export class AuthorizationService {
               observer.complete();
             },
             onFailure: function (err) {
+              console.log(err);
+              observer.error(err.message);
                console.log("Error while confirming new passsword");
             }
         });

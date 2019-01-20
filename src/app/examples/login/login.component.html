@@ -19,26 +19,26 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">  <i class="now-ui-icons ui-1_email-85"></i></span>
                         </div>
-                          <input type="text" ngModel class="form-control" name="email" placeholder="Email..." (focus)="focus=true" (blur)="focus=false" >
+                          <input type="text"  required ngModel class="form-control" name="email" placeholder="Email..." (focus)="focus=true" (blur)="focus=false" >
                       </div>
                       <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus2===true}">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
                             </div>
-                              <input type="password" ngModel name="password" placeholder="Password..."  class="form-control " (focus)="focus2=true" (blur)="focus2=false"/>
+                              <input type="password" ngModel required name="password" placeholder="Password..."  class="form-control " (focus)="focus2=true" (blur)="focus2=false"/>
                     </div>
                     </div>
                     <div class="footer text-center">
-                            <input type="submit" class="btn btn-primary btn-round btn-lg btn-block"  value="Get Started!" />
+                            <input type="submit" [disabled]="f.invalid" class="btn btn-primary btn-round btn-lg btn-block"  value="Get Started!" />
                     </div>
                     <div *ngIf="error">
                         <strong>{{error}}</strong>
                      </div>
-                    <!-- <div class="pull-right">
+                     <div class="pull-right">
                         <h6>
-                            <a href="#" class="link">Need Help?</a>
+                            <a href="forgotpassword"  routerLink="/forgotpassword" class="link">Forgot Password ?</a>
                         </h6>
-                    </div> -->
+                    </div> 
                 </form>
             </div>
         </div>

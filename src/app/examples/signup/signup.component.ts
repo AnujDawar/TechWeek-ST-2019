@@ -46,12 +46,8 @@ register(form: NgForm) {
   this.globalService.setlocalStorageItem("email",email);
   console.log("form.value.email-->"+form.value.email);
 
-  if(!this.isFormValid(form))
-  return;
-
-
-
-
+  if(this.isFormValid(form))
+  {
   this.auth.register(email, password,name,mobile).subscribe(
     (data) => {        
       this.confirmCode = true;
@@ -59,9 +55,12 @@ register(form: NgForm) {
     },
     (err) => {
       console.log(err);
-      this.error = "Please enter valid data.";
+      this.emailVerificationMessage = true;
+      this.error = err;
+      //this.error = "Please enter valid data.";
     }
   );
+}
 }
 
 
@@ -97,7 +96,7 @@ onSubmit(form: NgForm) {
     this.error="";
   }, (err)=> {
     this.emailVerificationMessage = true;
-   // this.error =err.message;
+    this.error = err.message;
    this.error = "Confirm Authorization Error has occurred";
   });   
 }
@@ -128,22 +127,33 @@ ngOnDestroy(){
    
 isFormValid(form: NgForm)
 	{
-		if(form.controls["name"].value != null &&
-			form.controls["name"].value.trim() != "" &&
-		   form.controls["email"].value != null &&
-      form.controls["email"].value.trim() != ""&&
-      form.controls["password"].value != null  &&
-      form.controls["password"].value != ""
-     )
+		if(form.controls["name"].value == null &&	form.controls["name"].value.trim() == "")
 			{
-				return true;
-			}
+        form.controls["name"].setValue("");
+        this.error= "Please enter valid name field.";
+        return false;     
+      }
 
-			else
-			{
-			 this.error= "Please enter all the required fields";
-				return false;
-			}
+      if( form.controls["email"].value == null && form.controls["email"].value.trim() == "")
+      {
+        form.controls["email"].setValue("");
+        this.error= "Please enter valid mail field.";
+        return false;
+      }      
+      if( form.controls["password"].value == null  && form.controls["password"].value == "" )
+      {
+        this.error= "Please enter valid mail field.";
+        return false;
+      }
+      if( form.controls["password"].value.length < 6 )
+      {
+        form.controls["password"].setValue("");
+        this.error= "Please enter valid password field (Min 6 Characters).";
+        return false;
+      }
+
+			 	return true;
+		
 	}
 
 }

@@ -42,13 +42,9 @@ export class LoginComponent implements OnInit {
     onSubmit(form: NgForm) {
         const email = form.value.email.trim();
         const password = form.value.password;
-      if(!this.isFormValid(form))
+      if(this.isFormValid(form))
         {
-          return;
-        }
-
         console.log("form.value.email-->"+form.value.email);
-       
         console.log("form.value.password-->"+form.value.password);
         this.auth.signIn(email, password).subscribe((data) => {
           console.log("data-->"+data);
@@ -70,21 +66,32 @@ export class LoginComponent implements OnInit {
           this.error ="Invalid credentials. Please try again.";
         });   
       }
+      
+    }
 
 
       isFormValid(form: NgForm)
       {
-        if(form.controls["email"].value != null &&
-          form.controls["email"].value.trim() != "" &&  
-          form.controls["password"].value !== "")
+        if(form.controls["email"].value == null && form.controls["email"].value.trim() == "" )  
           {
-            return true;
-          }
-          else
-          {
-           this.error= "Please enter all the required fields";
+            form.controls["email"].setValue("");
+            this.error= "Please enter email.";
             return false;
           }
+
+          if(form.controls["password"].value == null && form.controls["password"].value.trim() == "" )  
+          {
+            form.controls["password"].setValue("");
+            this.error= "Please enter password";
+            return false;
+          }
+
+          if(form.controls["password"].value.length < 6  )  
+          {
+            form.controls["password"].setValue("");
+            this.error= "Please enter valid password (6 Characters)";
+            return false;
+          }
+            return true;   
       }
-    
 }
