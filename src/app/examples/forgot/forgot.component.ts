@@ -90,6 +90,7 @@ codeWasConfirmed: boolean = false;
 error: string = "";
 emailVerificationMessage: boolean = false;
 data : Date = new Date();
+focus;
 
 
   constructor(public auth: AuthorizationService,public _router: Router,public globalService:GlobalService) { }
