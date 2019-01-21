@@ -14,5 +14,6 @@ export const aws_url = {
     STORE_USER_RESPONSE_URL:    "https://0sn0th0du1.execute-api.ap-south-1.amazonaws.com/dev/userresponse",
     UPDATE_TEAM_URL:            "https://0sn0th0du1.execute-api.ap-south-1.amazonaws.com/dev/team",
     LOCK_QUESTION_URL:          "https://0sn0th0du1.execute-api.ap-south-1.amazonaws.com/dev/question/lock",
-    AUDIENCE_POLL_URL:          "https://0sn0th0du1.execute-api.ap-south-1.amazonaws.com/dev/question/read/audience-poll"
+    AUDIENCE_POLL_URL:          "https://0sn0th0du1.execute-api.ap-south-1.amazonaws.com/dev/question/read/audience-poll",
+    AUDIENCE_ANALYSIS_URL:      "https://0sn0th0du1.execute-api.ap-south-1.amazonaws.com/dev/audience-results"
 };

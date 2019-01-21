@@ -19,7 +19,7 @@ import { ScoreboardComponent } from './examples/audiencescore/scoreboard.compone
 import { ResultsComponent } from './examples/results/results.component';
 import { ForgotComponent, ForgotStep2Component } from './examples/forgot/forgot.component';
 import { AudiencePollComponent } from './examples/audience-poll/audience-poll.component';
-
+import { AudienceTopScorerComponent } from './examples/audience-top-scorer/audience-top-scorer.component';
 
 
 
@@ -40,7 +40,8 @@ const routes: Routes = [
     { path: 'result', component: ResultsComponent },
     { path: 'forgotpassword', component: ForgotComponent },
     { path: 'forgotpasswordstep2', component: ForgotStep2Component },
-    { path: 'audience-poll', component: AudiencePollComponent }
+    { path: 'audience-poll', component: AudiencePollComponent },
+    { path: 'audience-top-scorer', component: AudienceTopScorerComponent }
     
 ];
 

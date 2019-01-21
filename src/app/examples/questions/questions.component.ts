@@ -16,7 +16,7 @@ import { aws_url } from "../../shared/urls";
 
 import { NgbAccordionConfig } from "@ng-bootstrap/ng-bootstrap";
 import * as Rellax from "rellax";
-import { RestApiservice } from "app/shared/rest-api.service";
+import { RestApiservice } from "../../shared/rest-api.service";
 
 @Component({
 	selector: "app-questions",

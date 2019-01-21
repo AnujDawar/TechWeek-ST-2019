@@ -47,7 +47,7 @@ export class AudiencePollComponent implements OnInit {
 			xAxes: [{
 				stacked: true,
 				ticks: {
-					fontColor: 'white',  // x axe labels (can be hexadecimal too)
+					fontColor: 'black',  // x axe labels (can be hexadecimal too)
 					fontSize: 20
 				},
 				gridLines: {
@@ -57,8 +57,9 @@ export class AudiencePollComponent implements OnInit {
 			yAxes: [{
 				stacked: true,
 				ticks: {
-					fontColor: 'white',  // y axes numbers color (can be hexadecimal too)
-					// min: 0,
+					fontColor: 'black',  // y axes numbers color (can be hexadecimal too)
+					min: 0,
+					fontSize: 20,
 					beginAtZero: true,
 
 				},
@@ -68,7 +69,7 @@ export class AudiencePollComponent implements OnInit {
 				scaleLabel: {
 					display: true,
 					labelString: 'score',
-					fontColor: 'white',  // y axe label color (can be hexadecimal too),
+					fontColor: 'black',  // y axe label color (can be hexadecimal too),
 					fontSize: 20
 				}
 			}]
@@ -77,13 +78,13 @@ export class AudiencePollComponent implements OnInit {
 
 	public barChartColor: Array<any> = [
 		{
-			backgroundColor: "blue",
-			borderColor: "white",
-			pointBackgroundColor: "white",
-			pointBorderColor: "#fff",
-			pointHoverBackgroundColor: "#fff",
-			pointHoverBorderColor: "white",
-			fontColor: "white"
+			backgroundColor: "#8B0000",
+			borderColor: "black",
+			pointBackgroundColor: "black",
+			pointBorderColor: "black",
+			pointHoverBackgroundColor: "black",
+			pointHoverBorderColor: "black",
+			fontColor: "black"
 		}
 	];
 
@@ -103,45 +104,70 @@ export class AudiencePollComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.getTeam();
+		this.getAudience();
 	}
 
 	refresh() {
-		this.getTeam();
+		this.getAudience();
 	}
 
 	subscribeToData() {
 		this.timerSubscription = Observable.timer(1000).subscribe(() =>
-			this.getTeam()
+			this.getAudience()
 		);
 	}
 
-	getTeam() {
+	getAudience() {
 		this.restApi.get(aws_url.AUDIENCE_POLL_URL).subscribe(
 			data => {
-				this.collection = data;
-				// data = Array.from(data);
-				console.log(data);
-				this.isDataLoaded = true;
 
-				this.updateGraph();
-				this.subscribeToData();
+				if (data == "NOT LOCKED YET")
+				{
+					this.randomizePoll();
+					console.log(data);
+					this.isDataLoaded = true;
+					this.subscribeToData();
+				}
+				else
+				{
+					this.collection = data;
+					console.log(data);
+					this.isDataLoaded = true;
+					this.updateGraph();
+					this.subscribeToData();
+				}
 			},
 			err => {
 				console.log(err);
-				this.error = "Not able to find team. Please try again.";
+				this.error = "Not able to find Audience. Please try again.";
 			}
 		);
+	}
+
+	randomizePoll() {
+		//	randomize this.collection
+
+		let newChartData = [];
+		let newChartLabels = [];
+
+		Math.floor(Math.random() * 6) + 1		
+
+		newChartData.push(Math.random() * 100);
+		newChartData.push(Math.random() * 100);
+		newChartData.push(Math.random() * 100);
+		newChartData.push(Math.random() * 100);
+
+		let cloneData = JSON.parse(JSON.stringify(this.barChartData));
+		cloneData[0].data = newChartData;
+		this.barChartData = cloneData;
+
+		console.log(this.barChartData);
+		console.log(this.barChartLabels);
 	}
 
 	updateGraph() {
 		let newChartData = [];
 		let newChartLabels = [];
-
-		// this.collection.forEach(function (item) {
-		// 	newChartData.push(item.score);
-		// 	newChartLabels.push(item.team_name);
-		// });
 
 		newChartData.push(this.collection["A"]);
 		newChartData.push(this.collection["B"]);
@@ -151,10 +177,6 @@ export class AudiencePollComponent implements OnInit {
 		let cloneData = JSON.parse(JSON.stringify(this.barChartData));
 		cloneData[0].data = newChartData;
 		this.barChartData = cloneData;
-
-		// this.barChartLabels = newChartLabels;
-
-		// this.chart.chart.config.data.labels = newChartLabels;
 
 		console.log(this.barChartData);
 		console.log(this.barChartLabels);

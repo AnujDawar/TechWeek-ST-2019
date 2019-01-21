@@ -130,4 +130,9 @@ export class ComponentsComponent implements OnInit, OnDestroy {
   {
     this._router.navigateByUrl("/audience-poll");
   }
+
+  audienceTopScorer()
+  {
+    this._router.navigateByUrl("/audience-top-scorer");
+  }
 }

@@ -25,6 +25,7 @@ import { ForgotStep2Component } from './forgot/forgot.component';
 
 
 import { AudiencePollComponent } from './audience-poll/audience-poll.component';
+import { AudienceTopScorerComponent } from './audience-top-scorer/audience-top-scorer.component';
 
 @NgModule({
     imports: [
@@ -51,7 +52,8 @@ import { AudiencePollComponent } from './audience-poll/audience-poll.component';
         ResultsComponent,
         ForgotComponent,
         ForgotStep2Component,
-        AudiencePollComponent
+        AudiencePollComponent,
+        AudienceTopScorerComponent
         
     ]
 })
