@@ -41,8 +41,7 @@ export class AudienceTopScorerComponent implements OnInit {
 				boxWidth: 80,
 				padding: 10
 			}
-		},
-
+		}
 	};
 
 	@ViewChild(BaseChartDirective) chart: BaseChartDirective;
