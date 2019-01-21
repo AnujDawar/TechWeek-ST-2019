@@ -1,8 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { aws_url } from "app/shared/urls";
-import { AuthorizationService } from "../../shared/authorization.service";
-import { GlobalService } from "../../shared/global.service";
-
 import { Router } from "@angular/router";
 import * as Rellax from "rellax";
 import { Http, Headers } from "@angular/http";
@@ -52,10 +49,8 @@ export class AudienceTopScorerComponent implements OnInit {
 	data: Date = new Date();
 
 	constructor(
-		public auth: AuthorizationService,
 		public _router: Router,
-		public restApi: RestApiservice,
-		public globalservice: GlobalService
+		public restApi: RestApiservice
 	) { }
 
 	// events

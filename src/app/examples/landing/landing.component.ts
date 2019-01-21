@@ -32,6 +32,7 @@ export class LandingComponent implements OnInit {
   isCollapsed = false;
   private timerSubscription: Subscription;
   private postsSubscription: Subscription;
+  isNextButtonActive = true;
 
   busy: Subscription;
 
@@ -97,11 +98,13 @@ export class LandingComponent implements OnInit {
 
   next(question) {
     if (this.nextQuestionText == "Lock Question!") {
+      this.isNextButtonActive = false;
       //	lock question
 
       this.restApi.put(aws_url.LOCK_QUESTION_URL, question).subscribe(
         data => {
           this.nextQuestionText = "Next Question!";
+          this.isNextButtonActive = true;
         },
         error => {}
       );
