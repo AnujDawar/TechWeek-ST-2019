@@ -6,7 +6,7 @@
             <div *ngIf="_data && _data.length > 0" class="col-md-4 content-center">
                 <div class="card  card-plain">
                     <div class="card-body">
-                        <form *ngIf="_data[0].round != 'Rapid-fire'" #regform="ngForm">
+                        <form #regform="ngForm">
 
                             <br>
 
@@ -21,7 +21,7 @@
 
 
                             <figure *ngIf="_data[0].media_type == 'audio'">
-                                <figcaption>Listen to the {{ _data[0].asset_name }} :</figcaption>
+                                <!-- <figcaption>Listen to the {{ _data[0].asset_name }} :</figcaption> -->
                                 <audio controls src="{{ _data[0].asset_path }}">
                                     Your browser does not support the
                                     <code>audio</code> element.

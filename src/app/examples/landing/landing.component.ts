@@ -97,14 +97,14 @@ export class LandingComponent implements OnInit {
   }
 
   next(question) {
+    this.isNextButtonActive = false;
     if (this.nextQuestionText == "Lock Question!") {
-      this.isNextButtonActive = false;
       //	lock question
 
       this.restApi.put(aws_url.LOCK_QUESTION_URL, question).subscribe(
         data => {
-          this.nextQuestionText = "Next Question!";
           this.isNextButtonActive = true;
+          this.nextQuestionText = "Next Question!";
         },
         error => {}
       );
@@ -115,6 +115,7 @@ export class LandingComponent implements OnInit {
         .put(aws_url.GET_NEXT_QUESTION_URL, question)
         .subscribe(
           data => {
+            this.isNextButtonActive = true;
             console.log("Anuj : " + data);
 
             if (data == "QUIZ OVER") {
