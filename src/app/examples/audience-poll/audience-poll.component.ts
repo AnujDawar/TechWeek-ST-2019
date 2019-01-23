@@ -47,29 +47,29 @@ export class AudiencePollComponent implements OnInit {
 			xAxes: [{
 				stacked: true,
 				ticks: {
-					fontColor: 'black',  // x axe labels (can be hexadecimal too)
+					fontColor: 'white',  // x axe labels (can be hexadecimal too)
 					fontSize: 20
 				},
 				gridLines: {
-					color: 'white'  // grid line color (can be removed or changed)
+					color: 'transparent'  // grid line color (can be removed or changed)
 				}
 			}],
 			yAxes: [{
 				stacked: true,
 				ticks: {
-					fontColor: 'black',  // y axes numbers color (can be hexadecimal too)
+					fontColor: 'white',  // y axes numbers color (can be hexadecimal too)
 					min: 0,
 					fontSize: 20,
 					beginAtZero: true,
 
 				},
 				gridLines: {
-					color: 'white'  // grid line color (can be removed or changed)
+					color: 'transparent'  // grid line color (can be removed or changed)
 				},
 				scaleLabel: {
 					display: true,
 					labelString: 'score',
-					fontColor: 'black',  // y axe label color (can be hexadecimal too),
+					fontColor: 'white',  // y axe label color (can be hexadecimal too),
 					fontSize: 20
 				}
 			}]
@@ -78,13 +78,13 @@ export class AudiencePollComponent implements OnInit {
 
 	public barChartColor: Array<any> = [
 		{
-			backgroundColor: "#8B0000",
-			borderColor: "black",
-			pointBackgroundColor: "black",
-			pointBorderColor: "black",
-			pointHoverBackgroundColor: "black",
-			pointHoverBorderColor: "black",
-			fontColor: "black"
+			backgroundColor: "#B3E5FC",
+			borderColor: "white",
+			pointBackgroundColor: "white",
+			pointBorderColor: "white",
+			pointHoverBackgroundColor: "white",
+			pointHoverBorderColor: "white",
+			fontColor: "white"
 		}
 	];
 
@@ -152,10 +152,10 @@ export class AudiencePollComponent implements OnInit {
 
 		Math.floor(Math.random() * 6) + 1		
 
-		newChartData.push(Math.random() * 100);
-		newChartData.push(Math.random() * 100);
-		newChartData.push(Math.random() * 100);
-		newChartData.push(Math.random() * 100);
+		newChartData.push(Math.random() * 10);
+		newChartData.push(Math.random() * 10);
+		newChartData.push(Math.random() * 10);
+		newChartData.push(Math.random() * 10);
 
 		let cloneData = JSON.parse(JSON.stringify(this.barChartData));
 		cloneData[0].data = newChartData;

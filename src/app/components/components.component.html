@@ -33,8 +33,8 @@
                 <img class="n-logo" src="assets/img/logo-latest.png" alt="TechConnect" style="max-width: 30%; width:25%">
                 <span>&nbsp;</span>
                 <h4 class="h4-seo">
-                    Welcome to Tech Week 2019.</h4>
-                <h3 *ngIf="!auth.isLoggedIn()">Please register/login to participate in Tech Quiz.</h3>
+                    Welcome to <b><i>tech</i></b>.Quiz 2019</h4>
+                <h3 *ngIf="!auth.isLoggedIn()">Please register/login to participate in Tech Quiz</h3>
 
                 <div *ngIf='auth.isLoggedIn() && globalservice.isAUser()'>
                     <button class="btn btn-primary btn-lg" (click)="startQuiz()">Start Quiz</button>
@@ -44,7 +44,7 @@
 
                 <div *ngIf='auth.isLoggedIn() && (globalservice.isSUser() || globalservice.isAUser())'>
                     <button class="btn btn-primary btn-lg" (click)="manageScores()">Manage Scores</button>
-                    <button class="btn btn-primary btn-lg" (click)="goToScoreBoard()">Audience Results</button>
+                    <!-- <button class="btn btn-primary btn-lg" (click)="goToScoreBoard()">Audience Results</button> -->
                 </div>
 
                 <div *ngIf='auth.isLoggedIn() && !globalservice.isAUser() && !globalservice.isSUser() && !globalservice.isPUser()'>
@@ -59,13 +59,11 @@
                     <button class="btn btn-primary btn-lg " (click)="audienceTopScorer()">Audience Analysis!</button>
                 </div>
 
-
-
             </div>
 
         </div>
     </div>
-    <footer class="footer" data-background-color="orange">
+    <footer class="footer">
         <div class="container">
             <div class="copyright">
                 &copy;

@@ -66,7 +66,7 @@
                       <p>Manage Question</p>
                     </a>
                 </li>
-                <li class="nav-item"  *ngIf='globalService.isAUser() || globalService.isSUser()'>
+                <li class="nav-item"  *ngIf='globalService.isAUser()'>
                     <a class="nav-link" (click)="manageTeam()"  >
                       <i class="now-ui-icons objects_diamond"></i>
                       <p>Manage Teams</p>

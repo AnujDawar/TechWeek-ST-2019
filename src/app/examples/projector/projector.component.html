@@ -6,7 +6,7 @@
             <div *ngIf="_data && _data.length > 0" class="col-md-4 content-center">
                 <div class="card  card-plain">
                     <div class="card-body">
-                        <form *ngIf="_data[0].round != 'Rapid-fire'" (ngSubmit)="submit(regform)" #regform="ngForm">
+                        <form *ngIf="_data[0].round != 'Rapid-fire'" #regform="ngForm">
 
                             <br>
 
@@ -91,21 +91,23 @@
             </div>
             <div *ngIf="!_data || _data.length == 0" class="col-md-4 content-center">
                 <h1 class="h2-seo">
-                    Welcome to Tech Week 2019</h1>
+                    Welcome to <b><i>tech</i></b>.Quiz 2019</h1>
                 <h3 *ngIf="auth.isLoggedIn()">Please wait...</h3>
 
             </div>
 
 
         </div>
-    </div>
-    <footer class="footer" data-background-color="orange">
-        <div class="container">
-            <div class="copyright">
-                &copy;
-                {{data | date: 'yyyy'}} TechConnect, Designed and developed by TechConnect Team.
 
+        <footer class="footer">
+            <div class="container">
+                <div class="copyright">
+                    &copy;
+                    {{data | date: 'yyyy'}} TechConnect, Designed and developed by TechConnect Team.
+
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
+
 </div>

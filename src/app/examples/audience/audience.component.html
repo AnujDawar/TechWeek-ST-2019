@@ -1,6 +1,9 @@
 <div class="wrapper" *ngIf="auth.isLoggedIn() && isDataLoaded">
     <div class="page-header clear-filter" filter-color="orange">
         <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
+
+        
+
         <div class="container">
 
             <div *ngIf="_data && _data.length > 0" class="col-md-4 content-center">
@@ -79,7 +82,7 @@
             </div>
             <div *ngIf="!_data || _data.length == 0" class="col-md-4 content-center">
                 <h1 class="h2-seo">
-                    Welcome to Tech Week 2019</h1>
+                    Welcome to <b><i>tech</i></b>.Quiz 2019</h1>
                 <h3 *ngIf="auth.isLoggedIn()">Please wait...</h3>
 
             </div>
@@ -87,7 +90,7 @@
 
         </div>
     </div>
-    <footer class="footer" data-background-color="orange">
+    <footer class="footer">
         <div class="container">
             <div class="copyright">
                 &copy;

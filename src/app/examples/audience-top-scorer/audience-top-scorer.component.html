@@ -1,16 +1,24 @@
 <!-- *ngIf="auth.isLoggedIn() && globalService.isPUser() && isDataLoaded" -->
 
-<div class="wrapper">
+<div class="wrapper" style="overflow: hidden">
 	<div class="page-header clear-filter" filter-color="orange">
+		<div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
 		<div class="content-center">
-			<br>
-			<br>
-			<br>
-
-			<div style="display: block" style="background-color: white;">
-				<canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend" [options]="polarAreaChartOptions"
-				 [chartType]="polarAreaChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+			<div class="card  card-plain">
+				<div style="display: block" style="margin-top: 5%">
+					<canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend" [options]="polarAreaChartOptions"
+					 [chartType]="polarAreaChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+				</div>
 			</div>
 		</div>
+		<footer class="footer">
+			<div class="container">
+				<div class="copyright">
+					&copy;
+					{{data | date: 'yyyy'}} TechConnect, Designed and developed by TechConnect Team.
+
+				</div>
+			</div>
+		</footer>
 	</div>
 </div>

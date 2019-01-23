@@ -2,17 +2,37 @@
 
 <div class="wrapper">
     <div class="page-header clear-filter" filter-color="orange">
-        <div class="content-center">
-            <br>
-            <br>
-            <br>
+        <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-image: url('assets/img/header.jpg');"></div>
+        <div class="container">
 
-            <div style="display: block;" style="background-color: white;">
-                <canvas baseChart [datasets]="
-                barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
-                [chartType]="barChartType" (chartHover)="chartHovered($event)" [colors]="barChartColor">
-                </canvas>
+            <div class="col-md-4 content-center">
+                <div class="card  card-plain">
+                    <div class="card-body">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+                        <div style="display: block;">
+                            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                                [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+                                [colors]="barChartColor">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
         </div>
+        <footer class="footer">
+            <div class="container">
+                <div class="copyright">
+                    &copy;
+                    {{data | date: 'yyyy'}} TechConnect, Designed and developed by TechConnect Team.
+
+                </div>
+            </div>
+        </footer>
     </div>
 </div>

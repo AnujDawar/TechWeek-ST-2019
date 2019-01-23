@@ -30,13 +30,14 @@ export class AudienceTopScorerComponent implements OnInit {
 	{
 		legend:
 		{
-			position: 'right',
+			position: 'left',
 			fullWidth: true,
 			labels:
 			{
-				fontSize: 40,
+				fontSize: 70,
 				boxWidth: 80,
-				padding: 10
+				fontColor: 'white',
+				padding: 40
 			}
 		}
 	};

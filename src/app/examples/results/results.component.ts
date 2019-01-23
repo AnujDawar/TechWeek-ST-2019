@@ -77,7 +77,7 @@ export class ResultsComponent implements OnInit {
 
 	public barChartColor: Array<any> = [
 		{
-			backgroundColor: "blue",
+			backgroundColor: "orange",
 			borderColor: "white",
 			pointBackgroundColor: "white",
 			pointBorderColor: "#fff",
