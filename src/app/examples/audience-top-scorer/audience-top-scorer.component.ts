@@ -34,8 +34,8 @@ export class AudienceTopScorerComponent implements OnInit {
 			fullWidth: true,
 			labels:
 			{
-				fontSize: 70,
-				boxWidth: 80,
+				fontSize: 40,
+				boxWidth: 40,
 				fontColor: 'white',
 				padding: 40
 			}
