@@ -135,4 +135,14 @@ export class ComponentsComponent implements OnInit, OnDestroy {
   {
     this._router.navigateByUrl("/audience-top-scorer");
   }
+
+  register()
+  {
+    this._router.navigateByUrl("/register");
+  }
+
+  login()
+  {
+    this._router.navigateByUrl("/login");
+  }
 }
